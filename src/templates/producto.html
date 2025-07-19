@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}{{ _("NexusMetriks") }} {{ plan_name | capitalize }}{% endblock %}
+
+{% block customCSS %}
+<style>
+  /* Contenedor principal del detalle */
+  .detalle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background: var(--container-bg);
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: auto;
+  }
+  /* Estilos de los textos */
+  .detalle-container h2, .detalle-container h3, .detalle-container p {
+    color: var(--text-color);
+  }
+  /* Botón de PayPal */
+  #paypal-button-container {
+    margin-top: 20px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<br><br>
+<div class="container">
+  <div class="detalle-container">
+    <section id="detalle-producto">
+      <div class="info">
+        <h2 id="producto-nombre">{{ plan_name | capitalize }}</h2>
+        <p id="producto-desc">{{ plan.descripcion }}</p>
+        <h3 id="producto-precio">$ {{ plan.amount }}</h3>
+        <div id="paypal-button-container"></div>
+      </div>
+    </section>
+  </div>
+</div>
+<script>
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: { value: '{{ plan.amount }}' },
+          description: '{{ plan_name | capitalize }}'
+        }]
+      }).then(function(orderId) {
+        console.log("{{ _('Order created:') }}", orderId);
+        return orderId;
+      });
+    },
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        const userId = "{{ session['user_id'] if session.get('user_id') else '' }}";
+        const amount = '{{ plan.amount }}';
+        const credits = '{{ plan.credits }}';
+        let url = "{{ url_for('pago_exitoso') }}" +
+          "?paymentId=" + data.orderID +
+          "&PayerID=" + data.payerID +
+          "&amount=" + amount +
+          "&credits=" + credits;
+        if (userId) {
+          url += "&user_id=" + userId;
+        }
+        window.location.href = url;
+      });
+    },
+    onError: function(err) {
+      console.error("{{ _('Payment error:') }}", err);
+      alert("{{ _('There was an error during the payment process.') }}");
+    }
+  }).render('#paypal-button-container');
+</script>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Lead Scoring</h1>
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="file">Sube un archivo CSV o Excel con tus leads</label>
+            <input type="file" class="form-control-file" id="file" name="file">
+        </div>
+        <button type="submit" class="btn btn-primary">Analizar</button>
+    </form>
+</div>
+{% endblock %}

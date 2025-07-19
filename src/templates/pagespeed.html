@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}{{ _("NexusMetriks") }}{% endblock %}
+{% block content %}
+<br><br>
+<h1>{{ _("PageSpeed Insights Analyzer") }}</h1>
+<br>
+<div class="container">
+  <h2>{{ _("Analyze the performance of your page") }}</h2>
+  <br>
+  <form id="analyze-form" class="mb-4">
+    <div class="form-group">
+      <input type="text" id="url-input" class="form-control" placeholder="{{ _('Enter the URL to analyze') }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">{{ _("Analyze") }}</button>
+  </form>
+  
+  <div id="results" style="margin-top: 20px;">
+    <div id="analysis-result"></div>
+    <div id="info-table"></div>
+  </div>
+</div>
+
+<!-- Include marked to convert Markdown to HTML -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+  document.getElementById('analyze-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var form = document.getElementById('analyze-form');
+    // Hide the form while processing
+    form.style.display = 'none';
+    
+    var url = document.getElementById('url-input').value;
+    document.getElementById('analysis-result').innerHTML = "<p>{{ _('Loading analysis...') }}</p>";
+    document.getElementById('info-table').innerHTML = "";
+    
+    fetch('/pagespeed', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ url: url })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        document.getElementById('analysis-result').innerHTML = "<p>{{ _('Error:') }} " + data.error + "</p>";
+      } else {
+        document.getElementById('analysis-result').innerHTML = marked.parse(data.analysis);
+        document.getElementById('info-table').innerHTML = data.table;
+      }
+      // Show the form again below the results
+      form.style.display = 'block';
+      document.getElementById('results').appendChild(form);
+    })
+    .catch(err => {
+      document.getElementById('analysis-result').innerHTML = "<p>{{ _('Error:') }} " + err + "</p>";
+      form.style.display = 'block';
+      document.getElementById('results').appendChild(form);
+    });
+  });
+</script>
+{% endblock %}

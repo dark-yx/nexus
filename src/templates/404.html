@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}{{ _("404 Not Found | NexusMetriks") }}{% endblock %}
+{% block content %}
+<br><br>
+<div class="chat-container"></div>
+    <h2>{{ _("Sorry, this URL does not exist on the platform") }}</h2>
+    <p>{{ error }}</p>
+</div>
+{% endblock %}

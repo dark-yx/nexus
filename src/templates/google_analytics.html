@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Propiedades de Google Analytics{% endblock %}
+{% block content %}
+<div class="container">
+    <br><br>
+    <h1>Propiedades de Google Analytics</h1>
+
+    {% if properties_info is not none %}
+        <ul>
+            {% for property_info in properties_info %}
+                <li>
+                    <strong>Nombre:</strong> {{ property_info[1] }}<br>
+                    <strong>ID:</strong> {{ property_info[0] }}<br>
+                    <strong>Fecha de Creación:</strong> {{ property_info[2] }}
+                </li>
+                <br>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No se pudieron cargar las propiedades de Google Analytics.</p>
+    {% endif %}
+</div>
+{% endblock %}

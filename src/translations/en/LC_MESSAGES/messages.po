@@ -1,0 +1,22 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: en\n"
+
+msgid "Hi"
+msgstr "Hi"
+
+msgid "Hello"
+msgstr "Hello"
+
+msgid "What would you like to do today?"
+msgstr "What would you like to do today?"
+
+msgid "AI-powered platform for digital marketing analysis"
+msgstr "AI-powered platform for digital marketing analysis"
+
+msgid "Web Traffic Analysis"
+msgstr "Web Traffic Analysis"
+
+msgid "Analyze your website traffic"
+msgstr "Analyze your website traffic"

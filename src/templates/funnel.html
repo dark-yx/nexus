@@ -1,0 +1,265 @@
+{% extends "base.html" %}
+{% block title %}{{ _("NexusMetriks") }}{% endblock %}
+
+{% block css %}
+<style>
+    .analysis-content {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 20px;
+    }
+    
+    .chart-container {
+        position: relative;
+        margin: 20px 0;
+        height: 400px;
+    }
+    
+    .error-message {
+        color: #dc3545;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #dc3545;
+        border-radius: 4px;
+        display: none;
+    }
+
+    .alert {
+        display: none;
+        margin-top: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<br><br>
+<h1>{{ _("Conversion Funnel") }}</h1>
+<br>
+<div class="container">
+    <h2>{{ _("Funnel Analysis") }}</h2>
+    <br>
+    {% if error %}
+      <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+
+    <!-- Input Form -->
+    <form id="funnel-form" method="POST">
+        <div class="row mt-4">
+            <div class="col-md-2 col-sm-12 mb-3">
+                <div class="form-group">
+                    <label for="clics">{{ _("Clicks:") }}</label>
+                    <input type="number" id="clics" name="clics" class="form-control" required min="0">
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-12 mb-3">
+                <div class="form-group">
+                    <label for="contactos">{{ _("Contacts:") }}</label>
+                    <input type="number" id="contactos" name="contactos" class="form-control" required min="0">
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-12 mb-3">
+                <div class="form-group">
+                    <label for="leads_validos">{{ _("Leads:") }}</label>
+                    <input type="number" id="leads_validos" name="leads_validos" class="form-control" required min="0">
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-12 mb-3">
+                <div class="form-group">
+                    <label for="sql">SQL:</label>
+                    <input type="number" id="sql" name="sql" class="form-control" required min="0">
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-12 mb-3">
+                <div class="form-group">
+                    <label for="lead_con_negocios">{{ _("Opportunities:") }}</label>
+                    <input type="number" id="lead_con_negocios" name="lead_con_negocios" class="form-control" required min="0">
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-12 mb-3">
+                <div class="form-group">
+                    <label for="clientes">{{ _("Customers:") }}</label>
+                    <input type="number" id="clientes" name="clientes" class="form-control" required min="0">
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">{{ _("Analyze Funnel") }}</button>
+    </form>
+
+    <!-- Loading message -->
+    <div id="loading-message" style="display: none;">
+        <h2>{{ _("Please wait, we are analyzing the metric...") }}</h2>
+    </div>
+
+    <!-- Container for results -->
+    <div id="funnel-analysis-result"></div>
+</div>
+
+<!-- Include Chart.js and Marked.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<script>
+document.getElementById('funnel-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Ocultar el formulario y mostrar el mensaje de carga
+    document.getElementById('funnel-form').style.display = 'none';
+    document.getElementById('loading-message').style.display = 'block';
+    
+    // Limpiar resultados anteriores y mensajes de error
+    document.getElementById('funnel-analysis-result').innerHTML = '';
+    const errorMessageDiv = document.getElementById('error-message'); // Asumiendo que tienes un div con id 'error-message'
+    if (errorMessageDiv) {
+        errorMessageDiv.style.display = 'none';
+        errorMessageDiv.textContent = '';
+    }
+
+
+    const formData = {
+        clics: parseInt(document.getElementById('clics').value),
+        contactos: parseInt(document.getElementById('contactos').value),
+        leads_validos: parseInt(document.getElementById('leads_validos').value),
+        sql: parseInt(document.getElementById('sql').value),
+        lead_con_negocios: parseInt(document.getElementById('lead_con_negocios').value),
+        clientes: parseInt(document.getElementById('clientes').value)
+    };
+
+    fetch('/funnel', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest' // Necesario si Flask lo requiere
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            // Intenta obtener el mensaje de error del JSON si está disponible
+            return response.json().then(data => {
+                throw new Error(data.error || `Error del servidor: ${response.status}`);
+            }).catch(() => {
+                // Si no hay JSON o falla el parseo, usa el statusText
+                throw new Error(`Error del servidor: ${response.status} ${response.statusText}`);
+            });
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Ocultar mensaje de carga
+        document.getElementById('loading-message').style.display = 'none';
+
+        if (data.error) { // Error específico devuelto por la aplicación
+            const errorMessageDiv = document.getElementById('error-message');
+            if (errorMessageDiv) {
+                errorMessageDiv.textContent = data.error;
+                errorMessageDiv.style.display = 'block';
+            } else {
+                alert("{{ _('Error:') }} " + data.error);
+            }
+            document.getElementById('funnel-form').style.display = 'block'; // Mostrar formulario de nuevo
+            return;
+        }
+
+        // Procesar y mostrar resultados
+        const analysisSummaryHTML = data.analysis_summary ? marked.parse(data.analysis_summary) : "<p>{{ _('No summary available.') }}</p>";
+        const chartData = data.chart_data;
+
+        const resultHTML = `
+            <hr>
+            <div class="row">
+                <div class="col-12">
+                    <div class="chart-container" style="height:400px; width:100%;">
+                        <canvas id="funnelChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <h2>{{ _("Analysis Summary") }}</h2>
+            <div class="analysis-content p-4 rounded shadow-sm">${analysisSummaryHTML}</div>
+        `;
+
+        document.getElementById('funnel-analysis-result').innerHTML = resultHTML;
+
+        // Crear gráfico de embudo (gráfico de barras)
+        if (chartData && chartData.labels && chartData.data) {
+            const funnelCtx = document.getElementById('funnelChart').getContext('2d');
+            new Chart(funnelCtx, {
+                type: 'bar', // Usar 'bar' para el embudo
+                data: {
+                    labels: chartData.labels, // Usar las etiquetas de embudo_data de funnel.py
+                    datasets: [{
+                        label: '{{ _("Funnel Stage") }}',
+                        data: chartData.data,
+                        backgroundColor: [
+                            'rgba(59, 212, 232, 0.65)', // Clics
+                            'rgba(221, 182, 198, 0.65)', // Contactos
+                            'rgba(166, 150, 200, 0.65)', // Leads
+                            'rgba(103, 234, 202, 0.65)', // SQL
+                            'rgba(148, 210, 230, 0.65)', // Negocios/Oportunidades
+                            'rgba(255, 159, 64, 0.65)'  // Clientes
+                        ],
+                        borderColor: [
+                            'rgb(62, 78, 136)',
+                            'rgb(96, 100, 112)',
+                            'rgb(62, 78, 136)',
+                            'rgb(96, 100, 112)',
+                            'rgb(62, 78, 136)',
+                            'rgb(255, 159, 64)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y', // Para un embudo horizontal simulado si se prefiere, o quitar para vertical
+                    plugins: {
+                        legend: {
+                            display: false // Usualmente no se necesita leyenda para un embudo simple
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ' ' + context.dataset.label + ': ' + context.parsed.x;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { // o y si indexAxis es 'y'
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '{{ _("Count") }}'
+                            }
+                        },
+                        y: { // o x si indexAxis es 'y'
+                           title: {
+                                display: true,
+                                text: '{{ _("Stage") }}'
+                           }
+                        }
+                    }
+                }
+            });
+        } else {
+            document.getElementById('funnel-analysis-result').innerHTML += "<p>{{ _('Could not load chart data.') }}</p>";
+        }
+    })
+    .catch(error => {
+        // Ocultar mensaje de carga
+        document.getElementById('loading-message').style.display = 'none';
+        
+        const errorMessageDiv = document.getElementById('error-message');
+        if (errorMessageDiv) {
+            errorMessageDiv.textContent = "{{ _('An error occurred:') }} " + error.message;
+            errorMessageDiv.style.display = 'block';
+        } else {
+            alert("{{ _('An error occurred:') }} " + error.message);
+        }
+        document.getElementById('funnel-form').style.display = 'block'; // Mostrar formulario de nuevo
+    });
+});
+</script>
+{% endblock %}

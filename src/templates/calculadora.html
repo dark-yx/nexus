@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% block title %}{{ _("NexusMetriks") }}{% endblock %}
+{% block content %}
+
+<br><br>
+
+<h1>{{ _("Metrics Calculator") }}</h1>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>{{ _("Engagement Rate") }}</h2>
+            <form id="engagement-form">
+                <div class="form-group">
+                    <label for="interacciones">{{ _("Number of Interactions:") }}</label>
+                    <input type="number" id="interacciones" name="interacciones" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="alcance">{{ _("Reach:") }}</label>
+                    <input type="number" id="alcance" name="alcance" class="form-control" required>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="calculateEngagement()">{{ _("Calculate Engagement") }}</button>
+            </form>
+        </div>
+        <div class="col-md-4">
+            <h2>{{ _("Conversion Rate") }}</h2>
+            <form id="conversion-form">
+                <div class="form-group">
+                    <label for="visitors">{{ _("Number of Visitors:") }}</label>
+                    <input type="number" id="visitors" name="visitors" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="conversions">{{ _("Number of Conversions:") }}</label>
+                    <input type="number" id="conversions" name="conversions" class="form-control" required>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="calculateConversion()">{{ _("Calculate Conversion") }}</button>
+            </form>
+        </div>
+        <div class="col-md-4">
+            <h2>{{ _("ROI") }}</h2>
+            <form id="roi-form">
+                <div class="form-group">
+                    <label for="ganancias">{{ _("Earnings (USD):") }}</label>
+                    <input type="text" id="ganancias" name="ganancias" class="form-control" required pattern="[0-9]+(\.[0-9]+)?" title="{{ _('Enter a decimal number (e.g., 123.45)') }}">
+                </div>
+                <div class="form-group">
+                    <label for="costos">{{ _("Costs (USD):") }}</label>
+                    <input type="text" id="costos" name="costos" class="form-control" required pattern="[0-9]+(\.[0-9]+)?" title="{{ _('Enter a decimal number (e.g., 123.45)') }}">
+                </div>
+                <button type="button" class="btn btn-primary" onclick="calculateROI()">{{ _("Calculate ROI") }}</button>
+            </form>
+        </div>
+    </div>
+    <br>
+
+    <div id="engagement-result"></div>
+    <div id="summary-content-engagement"></div>
+
+    <div id="conversion-result"></div>
+    <div id="summary-content-conversion"></div>
+
+    <div id="roi-result"></div>
+    <div id="summary-content-roi"></div>
+  
+    <div id="loading-message" style="display: none;">
+        <h2>{{ _("Please wait, we are analyzing the metric...") }}</h2>
+    </div>
+
+</div>
+
+<script>
+    function calculateEngagement() {
+        const form = document.getElementById('engagement-form');
+        const interacciones = form.querySelector('#interacciones').value;
+        const alcance = form.querySelector('#alcance').value;
+        const resultDiv = document.getElementById('engagement-result');
+        const summaryDiv = document.getElementById('summary-content-engagement');
+        const loadingMessage = document.getElementById('loading-message');
+
+        // Clear previous results
+        document.getElementById('conversion-result').innerHTML = '';
+        document.getElementById('summary-content-conversion').innerHTML = '';
+        document.getElementById('roi-result').innerHTML = '';
+        document.getElementById('summary-content-roi').innerHTML = '';
+        
+        resultDiv.innerHTML = '';
+        summaryDiv.innerHTML = '';
+        loadingMessage.style.display = 'block';
+
+        fetch('/calculadora', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ type: 'engagement', interacciones, alcance })
+        })
+        .then(response => response.json())
+        .then(data => {
+            resultDiv.innerHTML = `<h2>{{ _("Engagement Rate:") }} ${data.engagement_rate}%</h2>`;
+            summaryDiv.innerHTML = marked.parse(data.summary_content_engagement);
+            loadingMessage.style.display = 'none';
+        });
+    }
+
+    function calculateConversion() {
+        const form = document.getElementById('conversion-form');
+        const visitors = form.querySelector('#visitors').value;
+        const conversions = form.querySelector('#conversions').value;
+        const resultDiv = document.getElementById('conversion-result');
+        const summaryDiv = document.getElementById('summary-content-conversion');
+        const loadingMessage = document.getElementById('loading-message');
+
+        // Clear previous results
+        document.getElementById('engagement-result').innerHTML = '';
+        document.getElementById('summary-content-engagement').innerHTML = '';
+        document.getElementById('roi-result').innerHTML = '';
+        document.getElementById('summary-content-roi').innerHTML = '';
+        
+        resultDiv.innerHTML = '';
+        summaryDiv.innerHTML = '';
+        loadingMessage.style.display = 'block';
+
+        fetch('/calculadora', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ type: 'conversion', visitors, conversions })
+        })
+        .then(response => response.json())
+        .then(data => {
+            resultDiv.innerHTML = `<h2>{{ _("Conversion Rate:") }} ${data.conversion_rate}%</h2>`;
+            summaryDiv.innerHTML = marked.parse(data.summary_content_conversion);
+            loadingMessage.style.display = 'none';
+        });
+    }
+
+    function calculateROI() {
+        const form = document.getElementById('roi-form');
+        const ganancias = form.querySelector('#ganancias').value;
+        const costos = form.querySelector('#costos').value;
+        const resultDiv = document.getElementById('roi-result');
+        const summaryDiv = document.getElementById('summary-content-roi');
+        const loadingMessage = document.getElementById('loading-message');
+
+        // Clear previous results
+        document.getElementById('engagement-result').innerHTML = '';
+        document.getElementById('summary-content-engagement').innerHTML = '';
+        document.getElementById('conversion-result').innerHTML = '';
+        document.getElementById('summary-content-conversion').innerHTML = '';
+        
+        resultDiv.innerHTML = '';
+        summaryDiv.innerHTML = '';
+        loadingMessage.style.display = 'block';
+
+        fetch('/calculadora', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ type: 'roi', ganancias, costos })
+        })
+        .then(response => response.json())
+        .then(data => {
+            resultDiv.innerHTML = `<h2>{{ _("ROI:") }} ${data.roi}%</h2>`;
+            summaryDiv.innerHTML = marked.parse(data.summary_content_roi);
+            loadingMessage.style.display = 'none';
+        });
+    }
+    
+</script>
+
+{% endblock %}

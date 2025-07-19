@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "chartjs-adapter-date-fns": "^3.0.0",
+    "flag-icon-css": "^4.1.7",
+    "marked": "^12.0.2",
+    "tar": "^6.2.1"
+  }
+}

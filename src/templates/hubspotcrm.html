@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+{% block title %}{{ _("HubSpot CRM") }}{% endblock %}
+{% block content %}
+<br><br>
+<h1>{{ _("HubSpot CRM") }}</h1>
+<br>
+<div class="container">
+    <br>
+    {% if report %}
+    <!-- HubSpot CRM Report Section -->
+    <div class="result">
+        <h2>{{ _("HubSpot CRM Report") }}</h2>
+        <br>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>{{ _("Metric") }}</th>
+                    <th>{{ _("Value") }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ _("Total Contacts") }}</td>
+                    <td>{{ report['Total de Contactos'] }}</td>
+                </tr>
+                <tr>
+                    <td>{{ _("Total Open Deals") }}</td>
+                    <td>{{ report['Total de Negocios Abiertos'] }}</td>
+                </tr>
+                <tr>
+                    <td>{{ _("Total Closed Deals") }}</td>
+                    <td>{{ report['Total de Negocios Cerrados'] }}</td>
+                </tr>
+                <tr>
+                    <td>{{ _("Total Value of Closed Deals") }}</td>
+                    <td>{{ report['Valor Total de Negocios Cerrados'] }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+
+    <!-- OpenAI Generated Summary -->
+    <h2>{{ _("CRM Summary") }}</h2>
+    <div id="crm-summary">
+        <p>{{ summary }}</p>
+    </div>
+    <br>
+
+    <!-- HubSpot Contacts Table -->
+    <h2>{{ _("Contacts Table") }}</h2>
+    <div id="contactsTable">
+        {{ contacts_table | safe }}
+    </div>
+    <br>
+
+    <!-- Form to Set Scoring Factors -->
+    <h2>{{ _("Set Scoring Factors") }}</h2>
+    <form id="factorsForm" method="POST" action="/update_factors">
+        <div id="factorsContainer">
+            {% for column, unique_values in unique_values.items() %}
+                {% if column != 'name' %}
+                <div class="factor-group">
+                    <h4>{{ column }}</h4>
+                    <label for="{{ column }}_peso">{{ _("Weight:") }}</label>
+                    <input type="number" id="{{ column }}_peso" name="factors[{{ column }}][peso]" step="1" required>
+
+                    <label for="{{ column }}_values">{{ _("Unique Values:") }}</label>
+                    <div id="{{ column }}_values_container">
+                        {% for value in unique_values %}
+                        <div>
+                            <label for="{{ column }}_{{ value }}_puntaje">{{ value }}:</label>
+                            <input type="number" id="{{ column }}_{{ value }}_puntaje" name="factors[{{ column }}][values][{{ value }}]" step="1" required>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-primary">{{ _("Update Factors") }}</button>
+    </form>
+    <br>
+
+    <!-- Button to Generate Scoring -->
+    <h2>{{ _("Generate Scoring") }}</h2>
+    <button id="generateScoring" class="btn btn-primary">{{ _("Generate Scoring") }}</button>
+    <br><br>
+
+    <!-- Scoring Table -->
+    <h2>{{ _("Scoring Table") }}</h2>
+    <div id="scoringTable">
+        <!-- Table will be updated dynamically -->
+    </div>
+    <br>
+
+    <!-- Form to Generate Performance Report -->
+    <h2>{{ _("Generate Performance Report") }}</h2>
+    <form method="POST" action="{{ url_for('hubspot_data') }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <label for="start_date">{{ _("Start Date:") }}</label>
+        <input type="date" id="start_date" name="start_date" required>
+        <label for="end_date">{{ _("End Date:") }}</label>
+        <input type="date" id="end_date" name="end_date" required>
+        <button type="submit" class="btn btn-primary">{{ _("Generate Report") }}</button>
+    </form>
+
+    {% else %}
+    <div class="result">
+        <h2>{{ _("Welcome to the HubSpot Integration") }}</h2>
+        <br>
+        <a href="{{ url_for('hubspot_auth') }}" class="btn btn-primary">{{ _("Connect with HubSpot") }}</a>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+    // Function to render Markdown summary
+    function parseMarkdown() {
+        var summaryText = "{{ summary }}";
+        document.getElementById('crm-summary').innerHTML = marked.parse(summaryText);
+    }
+
+    $(document).ready(function () {
+        parseMarkdown();
+
+        const performanceReportForm = document.getElementById('performanceReportForm');
+        if (performanceReportForm) {
+            performanceReportForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const startDate = document.getElementById('start_date').value;
+                const endDate = document.getElementById('end_date').value;
+                if (startDate && endDate) {
+                    window.location.href = `{{ url_for('hubspot_data') }}?start_date=${new Date(startDate).getTime()/1000}&end_date=${new Date(endDate).getTime()/1000}`;
+                }
+            });
+        }
+
+        const updateFactorsForm = document.getElementById('factorsForm');
+        if (updateFactorsForm) {
+            updateFactorsForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const formData = new FormData(updateFactorsForm);
+                const factors = {};
+                formData.forEach((value, key) => {
+                    const [prefix, ...rest] = key.split('[');
+                    if (!factors[prefix]) {
+                        factors[prefix] = {};
+                    }
+                    const innerKey = rest.join('[').slice(0, -1);
+                    if (innerKey.includes(']')) {
+                        factors[prefix][innerKey.split(']')[0]] = value;
+                    } else {
+                        factors[prefix] = value;
+                    }
+                });
+
+                fetch('{{ url_for('update_factors') }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ factors: factors }),
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('{{ _("Factors updated") }}');
+                    } else {
+                        alert('{{ _("Error updating factors") }}');
+                    }
+                });
+            });
+        }
+
+        const generateScoringButton = document.getElementById('generateScoring');
+        if (generateScoringButton) {
+            generateScoringButton.addEventListener('click', function() {
+                const formData = new FormData(document.getElementById('factorsForm'));
+                const factors = {};
+                formData.forEach((value, key) => {
+                    const [prefix, ...rest] = key.split('[');
+                    if (!factors[prefix]) {
+                        factors[prefix] = {};
+                    }
+                    const innerKey = rest.join('[').slice(0, -1);
+                    if (innerKey.includes(']')) {
+                        factors[prefix][innerKey.split(']')[0]] = value;
+                    } else {
+                        factors[prefix] = value;
+                    }
+                });
+
+                fetch('{{ url_for('generate_scoring') }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ factors: factors }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.table) {
+                        document.getElementById('scoringTable').innerHTML = data.table;
+                    } else {
+                        alert('{{ _("Error generating scoring") }}');
+                    }
+                });
+            });
+        }
+    });
+</script>
+{% endblock %}

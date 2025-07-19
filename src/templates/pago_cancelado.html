@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}{{ _("NexusMetriks") }} {% endblock %}
+
+{% block customCSS %}
+<style>
+  /* Contenedor principal del detalle */
+  .detalle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background: var(--container-bg);
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: auto;
+  }
+</style>
+{% endblock %}
+{% block content %}
+<br><br>
+<h1>{{ _("El pago ha sido cancelado.") }}</h1>
+<br>
+<div class="container">
+    <div class="detalle-container">
+        <h1>Lo sentimos, tu compra de créditos ha fallado.</h1>
+        <p>Intenta nuevamente o contáctanos si el problema persiste.</p>
+        <a href="/" class="btn">Volver al inicio</a>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+{% extends "base.html" %}
+{% block title %}{{ _("NexusMetriks") }}{% endblock %}
+
+{% block customCSS %}
+<style>
+  /* Main container for the details */
+  .detalle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background: var(--container-bg);
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: auto;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<br><br>
+<h1 class="text-center">{{ _("The payment has been cancelled.") }}</h1>
+<br>
+<div class="container">
+  <div class="detalle-container">
+    <h1>{{ _("We're sorry, your credit purchase has been stopped.") }}</h1>
+    <p>{{ _("You have canceled the purchase of credits. You can try again if you want.") }}</p>
+    <a href="/" class="btn">{{ _("Return to Home") }}</a>
+  </div>
+</div>
+{% endblock %}

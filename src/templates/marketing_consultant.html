@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="{{ current_locale }}" prefix="og: http://ogp.me/ns#">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{% block title %}{{ _("NexusMetriks: Digital Marketing Virtual Consultant") }}{% endblock %}</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon-nexusmetriks.png') }}">
+  <meta name="description" content="{{ _('Transform your marketing metrics with AI. Make smart decisions, save time, and outperform your competition in seconds.') }}">
+  <meta name="keywords" content="{{ _('marketing AI, data analysis, marketing metrics, marketing tools, artificial intelligence marketing') }}">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nexusmetrics.com">
+  <meta property="og:title" content="{{ _('NexusMetriks: Intelligent Marketing with AI') }}">
+  <meta property="og:description" content="{{ _('Revolutionize your marketing strategy with real-time AI analysis. Make winning decisions without the hassle.') }}">
+  <meta property="og:image" content="/og-image.png">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ _('NexusMetriks: Your Data to the Max') }}">
+  <meta name="twitter:description" content="{{ _('Intelligent marketing with AI. Fast decisions, real results.') }}">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  {% block customCSS %}{% endblock %}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/flag-icons.min.css') }}">
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      fetch('/get-credits')
+        .then(response => response.json())
+        .then(data => {
+          if (data.credits !== undefined) {
+            document.getElementById('user-credits').textContent = `{{ _("Credits:") }} ${data.credits}`;
+          }
+        })
+        .catch(error => console.error('{{ _("Error fetching credits:") }}', error));
+    });
+  </script>
+  <script src="https://www.paypal.com/sdk/js?client-id=AaHPZ8BKL0PuCPlEKgkWCnoDsqNA4YG-bb90tw-qePOe_urStrcMNx140KooEU6dL9gtDeS38_ltyEiF&currency=USD"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+</head>
+
+<body class="bg-gradient-to-br from-gray-50 to-blue-50 font-inter text-gray-900">
+  <!-- Barra superior con logo -->
+  <div class="top-bar">
+    <div class="top-bar-content">
+      <a href="/" class="logo">
+        <img src="{{ url_for('static', filename='img/logo-nexusmetriks-dark.png') }}" alt="NexusMetriks Logo">
+      </a>
+      <div class="top-bar-controls">
+
+        <div class="dropdown lang">
+          <button class="btn" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{{ url_for('static', filename='img/flags/' + current_locale + '.svg') }}" class="flag-icon-dropdown" alt="flag">
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{{ url_for('change_language', lang='en') }}">
+                <img src="{{ url_for('static', filename='img/flags/en.svg') }}" class="flag-width" alt="English">
+                <span class="align-self-center">&nbsp;English</span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{{ url_for('change_language', lang='es') }}">
+                <img src="{{ url_for('static', filename='img/flags/es.svg') }}" class="flag-width" alt="Español">
+                <span class="align-self-center">&nbsp;Español</span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{{ url_for('change_language', lang='pt') }}">
+                <img src="{{ url_for('static', filename='img/flags/pt.svg') }}" class="flag-width" alt="Português">
+                <span class="align-self-center">&nbsp;Português</span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{{ url_for('change_language', lang='fr') }}">
+                <img src="{{ url_for('static', filename='img/flags/fr.svg') }}" class="flag-width" alt="Français">
+                <span class="align-self-center">&nbsp;Français</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header principal -->
+  <header class="header">
+    <div class="header-content">
+      <h2 class="text-5xl font-bold">{{ _("VIRTUAL MARKETING CONSULTANT") }}</h2>
+      <h1 class="text-5xl font-bold">{{ _("Transform your data into winning decisions") }}</h1>
+      <p class="header-parrafo text-xl mt-4">{{ _("Tired of dealing with complex interfaces, scattered data, and high marketing consulting costs? NexusMetriks is the unified platform that transforms marketing data analysis into agile and precise decisions, powered by artificial intelligence.") }}</p>
+      
+      <div class="limited-offer">
+        ⏰ {{ _("Limited beta invitations available") }}
+      </div>
+      
+      <div class="hero-buttons">
+        <button class="cta-button" onclick="window.location.href='/login'">{{ _("Try the App 🚀") }}</button>
+        <button class="cta-button outline" onclick="window.location.href='/register'">{{ _("Access Beta") }}</button>
+      </div>
+    </div>
+    <canvas class="interactive-bg" id="interactive-bg"></canvas>
+  </header>
+  <br>
+  <!-- Main Content -->
+  <div class="container-landing">
+    <!-- Problem Section -->
+    <section class="features py-16 mb-16">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">{{ _("The Problem") }}</h2>
+          <p class="text-xl">{{ _("Strategic analysis of digital marketing data today is...") }}</p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+            <div class="text-4xl mb-4">😫</div>
+            <h3 class="font-bold text-xl mb-4">{{ _("A headache") }}</h3>
+            <p>{{ _("Complex interfaces and intimidating data volumes that hinder effective analysis.") }}</p>
+          </div>
+          
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+            <div class="text-4xl mb-4">💰</div>
+            <h3 class="font-bold text-xl mb-4">{{ _("Expensive") }}</h3>
+            <p>{{ _("Specialized consulting costs can be prohibitive for many companies.") }}</p>
+          </div>
+          
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+            <div class="text-4xl mb-4">🔍</div>
+            <h3 class="font-bold text-xl mb-4">{{ _("Fragmented") }}</h3>
+            <p>{{ _("Involves moving between multiple tools, losing time and efficiency.") }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution py-16 mb-16">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">{{ _("The Solution") }}</h2>
+          <p class="text-xl">{{ _("A virtual marketing consultant with AI-powered tools") }}</p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
+            <div class="text-4xl mb-4">🌱</div>
+            <h3 class="font-bold text-xl mb-4">{{ _("Sustainable") }}</h3>
+            <p>{{ _("Better data-driven decisions at low cost") }}</p>
+          </div>
+          
+          <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
+            <div class="text-4xl mb-4">🚀</div>
+            <h3 class="font-bold text-xl mb-4">{{ _("Accessible") }}</h3>
+            <p>{{ _("Cloud deployment with user-friendly interface") }}</p>
+          </div>
+          
+          <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
+            <div class="text-4xl mb-4">💡</div>
+            <h3 class="font-bold text-xl mb-4">{{ _("Understandable") }}</h3>
+            <p>{{ _("Using AI for real-time metrics and data analysis") }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Differentiators Section -->
+    <section class="features py-16 mb-16">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">{{ _("Differentiators") }}</h2>
+          <p>{{ _("What makes us unique") }}</p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+            <div class="text-4xl mb-4">⚡</div>
+            <h3 class="font-bold text-xl mb-4">{{ _("1-Click Analysis") }}</h3>
+            <p>{{ _("Results in seconds") }}</p>
+          </div>
+          
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+            <div class="text-4xl mb-4">🤖</div>
+            <h3 class="font-bold text-xl mb-4">{{ _("MarTech AI Native") }}</h3>
+            <p>{{ _("AI-powered Analysis Technology") }}</p>
+          </div>
+          
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+            <div class="text-4xl mb-4">🎯</div>
+            <h3 class="font-bold text-xl mb-4">{{ _("User-Friendly Design") }}</h3>
+            <p>{{ _("Intuitive and easy-to-use interface") }}</p>
+          </div>
+          
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+            <div class="text-4xl mb-4">🔄</div>
+            <h3 class="font-bold text-xl mb-4">{{ _("Unified Platform") }}</h3>
+            <p>{{ _("Integration with primary sources") }}</p>
+          </div>
+          
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+            <div class="text-4xl mb-4">📊</div>
+            <h3 class="font-bold text-xl mb-4">{{ _("Simplified Data Science") }}</h3>
+            <p>{{ _("Marketing data processing") }}</p>
+          </div>
+          
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+            <div class="text-4xl mb-4">✨</div>
+            <h3 class="font-bold text-xl mb-4">{{ _("Comprehensive Solution") }}</h3>
+            <p>{{ _("Multiple tools in one") }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits py-16 mb-16">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">{{ _("Why choose us?") }}</h2>
+          <p>{{ _("Benefits") }}</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
+            <div class="text-4xl mb-4">⚡</div>
+            <h3 class="font-bold text-xl mb-4">{{ _("Efficiency and Speed") }}</h3>
+            <p>{{ _("Make data-driven decisions without wasting time or resources.") }}</p>
+          </div>
+          
+          <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
+            <div class="text-4xl mb-4">💰</div>
+            <h3 class="font-bold text-xl mb-4">{{ _("Cost Reduction") }}</h3>
+            <p>{{ _("Eliminate dependency on expensive consulting and fragmented tools.") }}</p>
+          </div>
+          
+          <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
+            <div class="text-4xl mb-4">📈</div>
+            <h3 class="font-bold text-xl mb-4">{{ _("Higher Profitability") }}</h3>
+            <p>{{ _("Optimize your digital campaigns, increase conversion, and improve your marketing investment ROI.") }}</p>
+          </div>
+          
+          <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
+            <div class="text-4xl mb-4">🎯</div>
+            <h3 class="font-bold text-xl mb-4">{{ _("Clear Path") }}</h3>
+            <p>{{ _("Clear any doubts about the need for a marketing strategy based on reliable and up-to-date data.") }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta py-16 mb-16">
+      <div class="container text-center">
+        <div class="limited-offer">
+          ⏰ {{ _("LIMITED SPOTS!") }}
+        </div>
+        <h2 class="text-4xl font-bold mb-6">{{ _("Ready to revolutionize your marketing?") }}</h2>
+        <p class="text-xl mb-8">{{ _("Every second counts. Your competition is already taking action.") }}</p>
+        <button onclick="trackBetaSignup('final_cta')" class="cta-button">
+          {{ _("Join the Exclusive Beta! 🔓") }}
+        </button>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-8">
+    <div class="container text-center">
+      <div class="text-xl font-bold mb-2">Nexus<span class="text-accent">Metriks</span></div>
+      <p class="text-sm opacity-80">© 2024 | {{ _("All rights reserved") }}</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script>
+    // Interactive network background effect
+    const canvas = document.getElementById('interactive-bg');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const nodes = [];
+    const nodeCount = 50;
+    const maxDistance = 150;
+    const mouse = { x: null, y: null };
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+    function initNodes() {
+      for (let i = 0; i < nodeCount; i++) {
+        nodes.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 1.5,
+          vy: (Math.random() - 0.5) * 1.5,
+          radius: 2 + Math.random() * 2
+        });
+      }
+    }
+    function updateNodes() {
+      nodes.forEach(node => {
+        node.x += node.vx;
+        node.y += node.vy;
+        if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+        if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+        if (mouse.x && mouse.y) {
+          const dx = node.x - mouse.x;
+          const dy = node.y - mouse.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 100) {
+            node.vx += (dx / distance) * 0.05;
+            node.vy += (dy / distance) * 0.05;
+          }
+        }
+      });
+    }
+    function drawNodes() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < maxDistance) {
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            // Crear un efecto de gradiente en las líneas
+            const gradient = ctx.createLinearGradient(nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y);
+            gradient.addColorStop(0, '#6ade91');
+            gradient.addColorStop(0.5, '#7051f6');
+            gradient.addColorStop(1, '#6ade91');
+            ctx.strokeStyle = gradient;
+            ctx.lineWidth = 1.5;
+            ctx.globalAlpha = 1 - distance / maxDistance;
+            ctx.stroke();
+            ctx.globalAlpha = 1;
+          }
+        }
+      }
+      nodes.forEach(node => {
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+        // Crear un efecto de brillo en los puntos
+        const gradient = ctx.createRadialGradient(
+          node.x, node.y, 0,
+          node.x, node.y, node.radius
+        );
+        gradient.addColorStop(0, '#ffffff');
+        gradient.addColorStop(0.5, '#6ade91');
+        gradient.addColorStop(1, '#6ade91');
+        ctx.fillStyle = gradient;
+        ctx.fill();
+      });
+    }
+    function animateNodes() {
+      updateNodes();
+      drawNodes();
+      requestAnimationFrame(animateNodes);
+    }
+    initNodes();
+    animateNodes();
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+    
+    // FOMO & Urgency Script
+    document.addEventListener('DOMContentLoaded', () => {
+      const fomoMessages = [
+        "{{ _('⏰ Limited beta invitations available') }}",
+        "{{ _('💡 Next-generation artificial intelligence') }}",
+        "{{ _('🔥 Last spots: Transform your marketing analysis') }}",
+        "{{ _('⭐ All the tools you need in one place') }}"
+      ];
+      const fomoElement = document.querySelector('#fomo-counter .fomo-text');
+      let currentIndex = 0;
+      setInterval(() => {
+        fomoElement.style.opacity = '0';
+        setTimeout(() => {
+          fomoElement.textContent = fomoMessages[currentIndex];
+          fomoElement.style.opacity = '1';
+          currentIndex = (currentIndex + 1) % fomoMessages.length;
+        }, 500);
+      }, 3000);
+    });
+    
+    // Tracking function for CTA
+    function trackBetaSignup(source) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event': 'beta_signup_click',
+        'signup_source': source,
+        'timestamp': new Date().toISOString()
+      });
+      window.location.href = `/login`;
+      return false;
+    }
+
+    // Theme Toggle Functionality
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      // Actualizar el tema
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      
+      // Actualizar el icono
+      const themeIcon = document.getElementById('theme-icon');
+      if (newTheme === 'dark') {
+        themeIcon.setAttribute('data-feather', 'moon');
+      } else {
+        themeIcon.setAttribute('data-feather', 'sun');
+      }
+      
+      // Actualizar el icono con Feather Icons
+      feather.replace();
+      
+      // Forzar actualización de estilos
+      document.body.style.display = 'none';
+      document.body.offsetHeight; // Forzar reflow
+      document.body.style.display = '';
+    }
+
+    // Inicializar el tema al cargar la página
+    document.addEventListener('DOMContentLoaded', function() {
+      // Cargar Feather Icons
+      feather.replace();
+      
+      // Obtener tema guardado o usar light por defecto
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      
+      // Configurar el icono inicial
+      const themeIcon = document.getElementById('theme-icon');
+      if (savedTheme === 'dark') {
+        themeIcon.setAttribute('data-feather', 'moon');
+      } else {
+        themeIcon.setAttribute('data-feather', 'sun');
+      }
+      
+      // Actualizar el icono
+      feather.replace();
+    });
+  </script>
+  <!-- Cargamos Bootstrap Bundle JS (incluye Popper) para el funcionamiento del dropdown -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

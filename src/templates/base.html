@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="{{ current_locale }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{{ _("NexusMetriks") }}{% endblock %}</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon-nexusmetriks.png') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  {% block customCSS %}{% endblock %}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/flag-icons.min.css') }}">
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      fetch('/get-credits')
+        .then(response => response.json())
+        .then(data => {
+          if (data.credits !== undefined) {
+            document.getElementById('user-credits').textContent = `{{ _("Credits:") }} ${data.credits}`;
+          }
+        })
+        .catch(error => console.error('{{ _("Error fetching credits:") }}', error));
+    });
+  </script>
+  <script src="https://www.paypal.com/sdk/js?client-id=AaHPZ8BKL0PuCPlEKgkWCnoDsqNA4YG-bb90tw-qePOe_urStrcMNx140KooEU6dL9gtDeS38_ltyEiF&currency=USD"></script>
+</head>
+<body class="full-width">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+
+  <header class="header-onepum">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{{ url_for('index') }}">
+          <img id="navbar-logo" src="{{ url_for('static', filename='img/logo-nexusmetriks-dark.png') }}" 
+               alt="{{ _('logo') }}" class="logo" width="30" height="30">
+        </a>        
+        <div class="ml-auto d-flex align-items-center">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-user"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+              <li><a class="dropdown-item" href="{{ url_for('profile') }}">{{ _("Profile") }}</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('comprar_creditos') }}">{{ _("Buy Credits") }}</a></li>
+              {% if session.get('is_admin') %}
+                <li><a class="dropdown-item" href="{{ url_for('admin_panel') }}">{{ _("Approve Beta Access") }}</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('admin_dashboard') }}">{{ _("Metrics Dashboard") }}</a></li>
+              {% endif %}
+              <li><a class="dropdown-item" href="{{ url_for('logout') }}">{{ _("Log Out") }}</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div>
+    <nav class="navbartop fixed-top">
+      {% if session %}
+    <div class="row align-items-center">
+      <div class="col-6">
+        <!-- Always-visible toggle button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="{{ _('Toggle navigation') }}">
+          <span class="navbar-toggler-icon" data-feather="menu"></span>
+        </button>
+        <!-- Collapsible menu -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('index') }}">
+                <span data-feather="grid"></span> {{ _("Dashboard") }}
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('ideas_de_negocios') }}">
+                <span data-feather="sun"></span> {{ _("Business Ideas") }}
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('estrategias_de_marketing') }}">
+                <span data-feather="layers"></span> {{ _("Marketing Strategies") }}
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('calculadora') }}">
+                <span data-feather="hash"></span> {{ _("Metrics Calculator") }}
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('funnel_analysis') }}">
+                <span data-feather="filter"></span> {{ _("Funnel Analysis") }}
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('analisis_web') }}">
+                <span data-feather="monitor"></span> {{ _("Website Analysis") }}
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('pagespeed_route') }}">
+                <span data-feather="zap"></span> {{ _("PageSpeed Insights") }}
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('search_console') }}">
+                <span data-feather="search"></span> {{ _("SEO Performance Analysis") }}
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('meta_ads') }}">
+                <span data-feather="bar-chart-2"></span> {{ _("Meta Ads Analysis") }}
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('google_analytics') }}">
+                <span data-feather="activity"></span> {{ _("Traffic Analysis") }}
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('news') }}">
+                <span data-feather="rss"></span> {{ _("Marketing News") }}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-3">
+        <!-- Contenido adicional a futuro -->
+      </div>
+      
+      <!-- Menú de idioma y controles a la derecha -->
+      <div class="col-3 text-end d-flex align-items-center justify-content-end">
+        <span id="user-credits" class="text-white me-3">{{ _("Credits: Loading...") }}</span>
+        <button id="theme-toggle-button" onclick="toggleTheme()" class="btn btn-secondary me-3">
+          <i id="theme-icon" data-feather="sun" style="width:25px; height:25px;"></i>
+        </button>
+        <div class="dropdown lang">
+          <button class="btn btn-light" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{{ url_for('static', filename='img/flags/' + current_locale + '.svg') }}" class="flag-icon-dropdown" alt="flag">
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{{ url_for('change_language', lang='en') }}">
+                <img src="{{ url_for('static', filename='img/flags/en.svg') }}" class="flag-width" alt="English">
+                <span class="align-self-center">&nbsp;English</span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{{ url_for('change_language', lang='es') }}">
+                <img src="{{ url_for('static', filename='img/flags/es.svg') }}" class="flag-width" alt="Español">
+                <span class="align-self-center">&nbsp;Español</span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{{ url_for('change_language', lang='pt') }}">
+                <img src="{{ url_for('static', filename='img/flags/pt.svg') }}" class="flag-width" alt="Português">
+                <span class="align-self-center">&nbsp;Português</span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{{ url_for('change_language', lang='fr') }}">
+                <img src="{{ url_for('static', filename='img/flags/fr.svg') }}" class="flag-width" alt="Français">
+                <span class="align-self-center">&nbsp;Français</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    </nav>
+  </div>
+
+  <div class="container-fluid">
+    <div class="">
+      <main class="full-width">
+        {% block content %}{% endblock %}
+        <div class="menu-overlay"></div>
+      </main>
+    </div>
+  </div>
+
+  <button onclick="topFunction()" id="scrollToTopBtn" title="{{ _('Go to top') }}">🔝</button>
+
+  {% if session %}
+  <!-- Chatbot button -->
+  <button id="chat-button" class="btn btn-primary">
+    <img src="{{ url_for('static', filename='img/chatbot.png') }}" alt="{{ _('Chatbot') }}" width="32" height="32">
+  </button>
+
+ <!-- Chatbot popup window -->
+ <div id="chat-popup" class="chat-popup">
+  <div class="chat-container">
+    <h3 class="mt-5 ">{{ _("Your Growth Marketing Assistant") }}</h3>
+    <div id="list-group" class="list-group w-auto"></div>
+    <div class="input-group mb-3">
+      <textarea type="text" class="form-control" id="chat-input" placeholder="{{ _('Type here...') }}"></textarea>
+      <div class="input-group-append">
+        <button id="gpt-button" class="btn btn-primary">
+          <img src="{{ url_for('static', filename='img/send-msj-chatbot.png') }}" alt="{{ _('Send') }}" width="24" height="24">
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+  {% endif %}
+
+  <!-- Common scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+          integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script>
+    feather.replace()
+  </script>
+  <!-- Custom scripts load afterwards -->
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+</body>
+</html>

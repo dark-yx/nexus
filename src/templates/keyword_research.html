@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}Keyword Research | OnePUM {% endblock %}
+{% block content %}
+
+<br><br>
+
+<div class="chat-container">
+    <h1>Keyword Research</h1>
+    <form method="POST" action="{{ url_for('keyword_research_route') }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <div class="form-group">
+            <label for="customer_id">Customer ID:</label>
+            <select class="form-control" name="customer_id" id="customer_id">
+                {% for id in customer_ids %}
+                    <option value="{{ id }}">{{ id }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="query">Palabra clave:</label>
+            <input type="text" id="query" name="query" class="form-control" placeholder="Palabra clave" required>
+        </div>
+
+        <div class="form-group">
+            <label for="location_ids">IDs de Ubicación (separados por comas):</label>
+            <input type="text" id="location_ids" name="location_ids" class="form-control" placeholder="IDs de Ubicación (separados por comas)" required>
+        </div>
+
+        <div class="form-group">
+            <label for="language_id">ID de Idioma:</label>
+            <input type="text" id="language_id" name="language_id" class="form-control" placeholder="ID de Idioma" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Buscar sugerencias</button>
+    </form>
+
+    <br>
+    {% if query %}
+    <h2>Resultados de Keyword Research</h2>
+
+    <h2>Recomendaciones de WLT 2.0</h2>
+    <div>{{ recommendations | safe }}</div>
+
+    <h2>Gráficos Generados</h2>
+    <div>
+        <h3>Gráfico de Barras</h3>
+        <img src="data:image/png;base64,{{ charts_standard.bar_chart }}" alt="Gráfico de Barras">
+    </div>
+
+    <div>
+        <h3>Gráfico de Pastel</h3>
+        <img src="data:image/png;base64,{{ charts_standard.pie_chart }}" alt="Gráfico de Pastel">
+    </div>
+
+    <h2>Detalles de la Búsqueda</h2>
+    <h3>Palabra Clave: {{ query }}</h3>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Término</th>
+                <th>Volumen de Búsqueda</th>
+                <th>Competencia</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in dataframe_standard %}
+            <tr>
+                <td>{{ row['text'] }}</td>
+                <td>{{ row['avg_monthly_searches'] }}</td>
+                <td>{{ row['competition'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+{% endblock %}

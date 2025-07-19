@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block title %}{{ _("NexusMetriks") }}{% endblock %}
+{% block content %}
+<br><br>
+<h1 class="text-center">{{ _("Leave Us Your Feedback") }}</h1>
+<br>
+<div class="container">
+    <h1 class="text-center">{{ _("Tell us about your experience") }}</h1>
+<br>
+    <form method="POST" action="{{ url_for('feedback') }}">
+        <!-- Star rating system -->
+        <label for="rating">{{ _("How would you rate your experience?") }}</label>
+        <div id="rating-description">
+            <p>{{ _("Select a rating") }}</p>
+        </div>
+        <div class="rating">
+            <input type="radio" id="star5" name="rating" value="5">
+            <label for="star5" title="5 {{ _('stars') }}">★</label>
+            <input type="radio" id="star4" name="rating" value="4">
+            <label for="star4" title="4 {{ _('stars') }}">★</label>
+            <input type="radio" id="star3" name="rating" value="3">
+            <label for="star3" title="3 {{ _('stars') }}">★</label>
+            <input type="radio" id="star2" name="rating" value="2">
+            <label for="star2" title="2 {{ _('stars') }}">★</label>
+            <input type="radio" id="star1" name="rating" value="1">
+            <label for="star1" title="1 {{ _('star') }}">★</label>
+        </div>
+        <br>
+        <!-- Ease of use rating with icons -->
+        <label for="ease_of_use">{{ _("How easy was it to use the platform?") }}</label>
+        <div id="ease-description">
+            <p>{{ _("Select the level of ease") }}</p>
+        </div>
+        <div class="ease-rating">
+            <input type="radio" id="ease5" name="ease_of_use" value="5">
+            <label for="ease5" title="{{ _('Very easy') }}">😊</label>
+            <input type="radio" id="ease4" name="ease_of_use" value="4">
+            <label for="ease4" title="{{ _('Easy') }}">🙂</label>
+            <input type="radio" id="ease3" name="ease_of_use" value="3">
+            <label for="ease3" title="{{ _('Acceptable') }}">😐</label>
+            <input type="radio" id="ease2" name="ease_of_use" value="2">
+            <label for="ease2" title="{{ _('Difficult') }}">🙁</label>
+            <input type="radio" id="ease1" name="ease_of_use" value="1">
+            <label for="ease1" title="{{ _('Very difficult') }}">😢</label>
+        </div>        
+        <br>
+        <label for="comment">{{ _("How can we improve?") }}</label><br>
+        <textarea id="comment" name="comment" rows="4" cols="50" required></textarea>
+        <br>
+        <button type="submit" class="btn btn-primary">{{ _("Submit") }}</button>
+    </form>
+</div>
+
+<style>
+    .rating,
+    .ease-rating {
+        display: flex;
+        justify-content: center;
+        flex-direction: row-reverse;
+    }
+    .rating input,
+    .ease-rating input {
+        display: none;
+    }
+    .rating label,
+    .ease-rating label {
+        font-size: 2rem;
+        cursor: pointer;
+        color: gray;
+    }
+    .rating input:checked ~ label,
+    .ease-rating input:checked ~ label {
+        color: gold;
+    }
+    .rating label:hover,
+    .rating label:hover ~ label,
+    .ease-rating label:hover,
+    .ease-rating label:hover ~ label {
+        color: gold;
+    }
+    
+    /* Hacemos que el textarea se adapte al ancho del contenedor */
+    textarea {
+        width: 100%;
+        max-width: 80%;
+        box-sizing: border-box;
+        resize: vertical;
+        border-radius: 10px!important;
+        padding: 5px!important;
+    }
+    
+    /* Centramos todos los elementos dentro del contenedor */
+    .container {
+        text-align: center;
+    }
+</style>
+
+<script>
+    const ratingInputs = document.querySelectorAll('input[name="rating"]');
+    const ratingValueDisplay = document.querySelector('#rating-description p');
+    ratingInputs.forEach(input => {
+        input.addEventListener('change', () => {
+            const value = input.value;
+            ratingValueDisplay.textContent = `{{ _("Rating:") }} ${value} ${value > 1 ? "{{ _('stars') }}" : "{{ _('star') }}"}`;
+        });
+    });
+
+    const easeInputs = document.querySelectorAll('input[name="ease_of_use"]');
+    const easeRatingValueDisplay = document.querySelector('#ease-description p');
+    easeInputs.forEach(input => {
+        input.addEventListener('change', () => {
+            const value = input.value;
+            let easeText = '';
+            switch(value) {
+                case '5':
+                    easeText = '{{ _("Very easy") }}';
+                    break;
+                case '4':
+                    easeText = '{{ _("Easy") }}';
+                    break;
+                case '3':
+                    easeText = '{{ _("Acceptable") }}';
+                    break;
+                case '2':
+                    easeText = '{{ _("Difficult") }}';
+                    break;
+                case '1':
+                    easeText = '{{ _("Very difficult") }}';
+                    break;
+            }
+            easeRatingValueDisplay.textContent = `{{ _("Ease level:") }} ${easeText}`;
+        });
+    });
+</script>
+{% endblock %}

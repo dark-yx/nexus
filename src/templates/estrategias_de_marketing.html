@@ -1,0 +1,241 @@
+{% extends "base.html" %}
+{% block title %}{{ _("NexusMetriks") }}{% endblock %}
+{% block content %}
+<br><br>
+<h1>{{ _("Your Digital Marketing Strategy Generator") }}</h1>
+<br>
+<div class="container">
+    {% if marketing_strategy %}
+    <div class="result">
+        <h2>{{ _("Digital Marketing Strategy Suggestions") }}</h2>
+        <br>
+        <div id="summary-content">{{ marketing_strategy }}</div>
+    </div>
+    {% endif %}
+
+    <div>
+        <h2>{{ _("Let's Generate Your Custom Digital Marketing Strategy") }}</h2>
+        <form method="POST" action="{{ url_for('estrategias_de_marketing') }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div id="input-container">
+                <br>
+                <div class="input-step" data-step="1">
+                    <h3>{{ _("What is your company's business model?") }}</h3>
+                    <label for="business_model">{{ _("Describe your business model:") }}</label>
+                    <input type="text" id="business_model" name="business_model" class="wide-input" required>
+                    <span id="business_model-error" class="error-message" style="display: none; color: red;">{{ _("Please describe your business model.") }}</span>
+                    <button type="button" class="next-button">{{ _("Process Business Model") }}</button>
+                </div>
+                <div class="input-step" data-step="2" style="display: none;">
+                    <h3>{{ _("What is the unique value proposition of your product or service?") }}</h3>
+                    <label for="value_proposition">{{ _("Describe your unique value proposition:") }}</label>
+                    <input type="text" id="value_proposition" name="value_proposition" class="wide-input" required>
+                    <span id="value_proposition-error" class="error-message" style="display: none; color: red;">{{ _("Please describe your unique value proposition.") }}</span>
+                    <button type="button" class="next-button">{{ _("Process Value Proposition") }}</button>
+                </div>
+                <div class="input-step" data-step="3" style="display: none;">
+                    <h3>{{ _("What is your ideal customer like?") }}</h3>
+                    <label for="ideal_customer">{{ _("Describe your ideal customer:") }}</label>
+                    <input type="text" id="ideal_customer" name="ideal_customer" class="wide-input" required>
+                    <span id="ideal_customer-error" class="error-message" style="display: none; color: red;">{{ _("Please describe your ideal customer.") }}</span>
+                    <button type="button" class="next-button">{{ _("Process Ideal Customer") }}</button>
+                </div>
+                <div class="input-step" data-step="4" style="display: none;">
+                    <h3>{{ _("What was your revenue last month?") }}</h3>
+                    <label for="current_revenue">{{ _("Enter your revenue for last month (in USD):") }}</label>
+                    <input type="text" id="current_revenue" name="current_revenue" class="wide-input" required pattern="[0-9]+(\.[0-9]{1,2})?" title="{{ _('Enter a decimal number (e.g., 12345.67)') }}">
+                    <span id="current_revenue-error" class="error-message" style="display: none; color: red;">{{ _("Please enter a valid decimal number (e.g., 12345.67)") }}</span>
+                    <button type="button" class="next-button">{{ _("Process Revenue") }}</button>
+                </div>
+                <div class="input-step" data-step="5" style="display: none;">
+                    <h3>{{ _("What is your company's commercial goal?") }}</h3>
+                    <label for="commercial_goal">{{ _("Describe your commercial goal:") }}</label>
+                    <input type="text" id="commercial_goal" name="commercial_goal" class="wide-input" required>
+                    <span id="commercial_goal-error" class="error-message" style="display: none; color: red;">{{ _("Please describe your commercial goal.") }}</span>
+                    <button type="button" class="next-button">{{ _("Process Commercial Goal") }}</button>
+                </div>
+                <div class="input-step" data-step="6" style="display: none;">
+                    <h3>{{ _("What is the problem or challenge currently preventing you from achieving your goals?") }}</h3>
+                    <label for="current_challenge">{{ _("Describe the problem or challenge:") }}</label>
+                    <input type="text" id="current_challenge" name="current_challenge" class="wide-input" required>
+                    <span id="current_challenge-error" class="error-message" style="display: none; color: red;">{{ _("Please describe the problem or challenge.") }}</span>
+                    <button type="button" class="next-button">{{ _("Process Problem") }}</button>
+                </div>
+                <div class="input-step" data-step="7" style="display: none;">
+                    <h3>{{ _("What human and financial resources are available?") }}</h3>
+                    <label for="available_resources">{{ _("Describe the available resources:") }}</label>
+                    <input type="text" id="available_resources" name="available_resources" class="wide-input" required>
+                    <span id="available_resources-error" class="error-message" style="display: none; color: red;">{{ _("Please describe the available resources.") }}</span>
+                    <button type="button" class="next-button">{{ _("Process Resources") }}</button>
+                </div>
+                <div class="input-step" data-step="8" style="display: none;">
+                    <h3>{{ _("How much effort are you willing to invest to achieve your goal?") }}</h3>
+                    <label for="effort_level">{{ _("Describe your level of effort:") }}</label>
+                    <input type="text" id="effort_level" name="effort_level" class="wide-input" required>
+                    <span id="effort_level-error" class="error-message" style="display: none; color: red;">{{ _("Please describe your level of effort.") }}</span>
+                    <button type="button" class="next-button">{{ _("Process Effort") }}</button>
+                </div>
+                <div class="input-step" data-step="9" style="display: none;">
+                    <h3>{{ _("What is the name of the company or business for which you want to generate a strategy?") }}</h3>
+                    <label for="business_name">{{ _("What is your business called?") }}</label>
+                    <input type="text" id="business_name" name="business_name" class="wide-input" required>
+                    <span id="business_name-error" class="error-message" style="display: none; color: red;">{{ _("Please provide the business name.") }}</span>
+                    <button class="btn btn-primary" type="submit" id="generate-strategy-button">{{ _("Generate Strategy") }}</button>
+                </div>
+            <br>
+            </div>
+            <div id="loading-message" style="display: none;">
+                <h3>{{ _("Please wait, we are generating your marketing strategy...") }}</h3>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+(function() {
+    const nextButtons = document.querySelectorAll('.next-button');
+    const form = document.getElementById('marketing-strategy-form');
+    const inputSteps = document.querySelectorAll('.input-step');
+    const loadingMessage = document.getElementById('loading-message');
+    let currentStep = 1;
+
+    nextButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            if (currentStep < inputSteps.length) {
+                if (validateStep(currentStep)) {
+                    inputSteps[currentStep - 1].style.display = 'none';
+                    inputSteps[currentStep].style.display = 'block';
+                    currentStep++;
+                }
+            }
+        });
+    });
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const generateStrategyButton = document.getElementById('generate-strategy-button');
+        generateStrategyButton.disabled = true;
+
+        inputSteps[currentStep - 1].style.display = 'none';
+        loadingMessage.style.display = 'block';
+
+        const formData = new FormData(form);
+        fetch('/estrategias-de-marketing', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.text())
+        .then(data => {
+            document.open();
+            document.write(data);
+            document.close();
+        })
+        .catch(error => console.error('Error:', error));
+    });
+
+    function validateStep(step) {
+        let isValid = true;
+        switch(step) {
+            case 1:
+                const businessModelInput = document.getElementById('business_model');
+                const businessModelError = document.getElementById('business_model-error');
+                if (businessModelInput.value.trim() === '') {
+                    businessModelError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    businessModelError.style.display = 'none';
+                }
+                break;
+            case 2:
+                const valuePropositionInput = document.getElementById('value_proposition');
+                const valuePropositionError = document.getElementById('value_proposition-error');
+                if (valuePropositionInput.value.trim() === '') {
+                    valuePropositionError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    valuePropositionError.style.display = 'none';
+                }
+                break;
+            case 3:
+                const idealCustomerInput = document.getElementById('ideal_customer');
+                const idealCustomerError = document.getElementById('ideal_customer-error');
+                if (idealCustomerInput.value.trim() === '') {
+                    idealCustomerError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    idealCustomerError.style.display = 'none';
+                }
+                break;
+            case 4:
+                const currentRevenueInput = document.getElementById('current_revenue');
+                const currentRevenueError = document.getElementById('current_revenue-error');
+                const currentRevenueValue = currentRevenueInput.value;
+                const currentRevenuePattern = /^[0-9]+(\.[0-9]{1,2})?$/;
+                if (!currentRevenuePattern.test(currentRevenueValue) || currentRevenueValue.trim() === '') {
+                    currentRevenueError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    currentRevenueError.style.display = 'none';
+                }
+                break;
+            case 5:
+                const commercialGoalInput = document.getElementById('commercial_goal');
+                const commercialGoalError = document.getElementById('commercial_goal-error');
+                if (commercialGoalInput.value.trim() === '') {
+                    commercialGoalError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    commercialGoalError.style.display = 'none';
+                }
+                break;
+            case 6:
+                const currentChallengeInput = document.getElementById('current_challenge');
+                const currentChallengeError = document.getElementById('current_challenge-error');
+                if (currentChallengeInput.value.trim() === '') {
+                    currentChallengeError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    currentChallengeError.style.display = 'none';
+                }
+                break;
+            case 7:
+                const availableResourcesInput = document.getElementById('available_resources');
+                const availableResourcesError = document.getElementById('available_resources-error');
+                if (availableResourcesInput.value.trim() === '') {
+                    availableResourcesError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    availableResourcesError.style.display = 'none';
+                }
+                break;
+            case 8:
+                const effortLevelInput = document.getElementById('effort_level');
+                const effortLevelError = document.getElementById('effort_level-error');
+                if (effortLevelInput.value.trim() === '') {
+                    effortLevelError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    effortLevelError.style.display = 'none';
+                }
+                break;
+            case 9:
+                const businessNameInput = document.getElementById('business_name');
+                const businessNameError = document.getElementById('business_name-error');
+                if (businessNameInput.value.trim() === '') {
+                    businessNameError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    businessNameError.style.display = 'none';
+                }
+                break;
+        }
+        return isValid;
+    }
+
+    var summaryContent = document.getElementById('summary-content');
+    if (summaryContent) {
+        summaryContent.innerHTML = marked.parse(summaryContent.textContent);
+    }
+})();
+</script>
+{% endblock %}

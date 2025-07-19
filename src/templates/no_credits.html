@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}{{ _("NexusMetriks") }}{% endblock %}
+{% block content %}
+<br><br>
+<h1 class="text-center">{{ _("You have run out of credits") }}</h1>
+<br>
+<div class="container text-center">
+    <h2>{{ _("Insufficient credits to use this tool") }}</h2>
+    <div id="dynamic-text"></div>
+    <br>
+    <p>{{ _("We are sorry, but you have exhausted your available credits.") }}</p>
+    <p>{{ _("Don't worry! You can purchase a credits package that suits your budget to continue using our platform.") }}</p>
+    <br>
+    <p>{{ _("Get new credits now") }}</p>
+    <a href="{{ url_for('comprar_creditos') }}" class="btn btn-primary">{{ _("Buy Credits") }}</a>
+</div>
+
+{% endblock %}
+
+
+

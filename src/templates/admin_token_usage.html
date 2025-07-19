@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Token Usage Summary</title>
+</head>
+<body>
+    <h1>Token Usage Summary</h1>
+    <table border="1">
+        <tr>
+            <th>Tool Name</th>
+            <th>Total Tokens Used</th>
+        </tr>
+        {% for tool_name, total_tokens in summary %}
+        <tr>
+            <td>{{ tool_name }}</td>
+            <td>{{ total_tokens }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

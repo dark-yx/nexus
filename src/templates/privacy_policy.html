@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ _("Nexus Metrics") }}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {% block customCSS %}{% endblock %}
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+          integrity="sha512-pMZ1qIKp4r7jZ5vBC1Hy0yP8lCk3lfk7VxqOe+UvVOr6Xim1a3opCxLIV+fSTKJ+t+JtE1gM1Aw7KeFvU1+Mfw==" 
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <body class="full-width-index">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <header class="header-onepum">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='img/logonexusmetrics.png') }}" alt="{{ _('logo') }}" class="logo" width="30" height="30">
+          </a>
+          <div class="ml-auto d-flex align-items-center">
+            <!-- Theme toggle button -->
+            <button id="theme-toggle-button" onclick="toggleTheme()" class="btn btn-secondary ms-3">
+              <i id="theme-icon" data-feather="sun" style="width:25px; height:25px;"></i>
+            </button>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-user"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+                <li><a class="dropdown-item" href="{{ url_for('marketing_con_ia') }}">{{ _("NexusMetriks") }}</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('login') }}">{{ _("Login") }}</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('register') }}">{{ _("Register") }}</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main content -->
+    <div class="container-index">
+      <div>
+        <h1>{{ _("Privacy Policy") }}</h1>
+        <p><strong>{{ _("Last Updated:") }}</strong> 11/16/2024</p>
+        <p>{{ _("Thank you for using Nexus Metrics, your virtual assistant specialized in digital marketing. At Nexus Metrics, we are committed to protecting your privacy and personal data. This privacy policy explains how we collect, use, and protect the information you provide when using our application.") }}</p>
+    
+        <h2>1. {{ _("Information Collected") }}</h2>
+        <p>{{ _("We collect the following information when you use Nexus Metrics:") }}</p>
+        <ul>
+          <li>{{ _("Contact Information: We may collect your name, email address, and other contact details when you register or contact us.") }}</li>
+          <li>{{ _("Device Information: We may collect information about the device you use to access our application, including your IP address, device type, operating system, and unique device identifier.") }}</li>
+          <li>{{ _("Usage Data: We may collect information about how you interact with our application, such as the pages you visit, the features you use, and the time you spend on our application.") }}</li>
+          <li>{{ _("Voluntarily Provided Information: You may provide additional information voluntarily when using our application, such as user preferences, feedback, and support requests.") }}</li>
+        </ul>
+    
+        <h2>2. {{ _("Use of Information") }}</h2>
+        <p>{{ _("We use the collected information for the following purposes:") }}</p>
+        <ul>
+          <li>{{ _("To provide and maintain our application.") }}</li>
+          <li>{{ _("To personalize and improve your experience with our application.") }}</li>
+          <li>{{ _("To communicate with you, respond to your inquiries, and provide technical support.") }}</li>
+          <li>{{ _("To analyze usage trends and improve our application.") }}</li>
+          <li>{{ _("To comply with legal obligations and resolve disputes.") }}</li>
+        </ul>
+    
+        <h2>3. {{ _("Information Sharing") }}</h2>
+        <p>{{ _("We do not share your personal information with third parties, except in the following circumstances:") }}</p>
+        <ul>
+          <li>{{ _("When required by law, regulations, or judicial orders.") }}</li>
+          <li>{{ _("When necessary to protect our rights, property, or safety, or the rights, property, or safety of our users or others.") }}</li>
+          <li>{{ _("When we obtain your consent to share your information.") }}</li>
+        </ul>
+    
+        <h2>4. {{ _("Information Security") }}</h2>
+        <p>{{ _("We take reasonable measures to protect your personal information from unauthorized access, disclosure, alteration, or destruction. However, please note that no security measure is completely foolproof.") }}</p>
+    
+        <h2>5. {{ _("Cookies") }}</h2>
+        <p>{{ _("We use cookies and similar technologies to enhance the functionality of our application and provide you with a more personalized experience. You can manage your cookie preferences through your browser settings.") }}</p>
+    
+        <h2>6. {{ _("Third-Party Websites") }}</h2>
+        <p>{{ _("Our application may contain links to third-party websites. This privacy policy does not apply to those sites, so we recommend reviewing their privacy policies.") }}</p>
+    
+        <h2>7. {{ _("Changes to the Privacy Policy") }}</h2>
+        <p>{{ _("We reserve the right to update this privacy policy at any time. We will notify you of any changes by posting the updated privacy policy in our application. We recommend that you review this page periodically to stay informed of any changes.") }}</p>
+    
+        <h2>8. {{ _("Contact Us") }}</h2>
+        <p>{{ _("If you have any questions about this privacy policy or our privacy practices, please contact us at info@nexusmetriks.com or +593982541659.") }}</p>
+    
+        <p>{{ _("By using our application, you agree to the terms of this privacy policy.") }}</p>
+      </div>
+    </div>
+    <button onclick="topFunction()" id="scrollToTopBtn" title="{{ _('Go to top') }}">🔝</button>
+    <!-- Common scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" 
+            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" 
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+      feather.replace();
+    </script>
+    <script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+  </body>
+</html>

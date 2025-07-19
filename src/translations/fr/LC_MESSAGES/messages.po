@@ -1,0 +1,1739 @@
+# French translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-03-03 19:53+0000\n"
+"PO-Revision-Date: 2025-03-04 04:19+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fr\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+
+#: config.py:23
+msgid "50 credit trial package"
+msgstr "Pack d'essai de 50 crédits"
+
+#: config.py:24
+msgid "1400 credits starter pack"
+msgstr "Pack de démarrage de 1400 crédits"
+
+#: config.py:25
+msgid "3000 credits plus package"
+msgstr "Pack Plus de 3000 crédits"
+
+#: config.py:26
+msgid "5000 credits growth pack"
+msgstr "Pack de croissance de 5000 crédits"
+
+#: templates/404.html:2
+msgid "404 Not Found | NexusMetriks"
+msgstr "404 Introuvable | NexusMetriks"
+
+#: templates/404.html:6
+msgid "Sorry, this URL does not exist on the platform"
+msgstr "Désolé, cette URL n'existe pas sur la plateforme"
+
+#: templates/analisis.html:2 templates/analytics_form.html:2
+#: templates/base.html:6 templates/calculadora.html:2
+#: templates/comprar_creditos.html:2 templates/estrategias_de_marketing.html:2
+#: templates/facebook_ads.html:2 templates/feedback_form.html:2
+#: templates/funnel.html:2 templates/ideas_de_negocios.html:2
+#: templates/index.html:63 templates/marketing_consultant.html:146
+#: templates/no_credits.html:2 templates/pagespeed.html:2
+#: templates/pago_cancelado.html:2 templates/pago_cancelado.html:39
+#: templates/pago_exitoso.html:2 templates/pago_fallido.html:2
+#: templates/privacy_policy.html:35 templates/producto.html:2
+#: templates/search_console.html:2
+msgid "NexusMetriks"
+msgstr "NexusMetriks"
+
+#: templates/analisis.html:6
+msgid "Strategic Website Analysis"
+msgstr "Analyse stratégique du site web"
+
+#: templates/analisis.html:10
+msgid "Analysis Result"
+msgstr "Résultat de l'analyse"
+
+#: templates/analisis.html:14
+msgid "Scraping Result:"
+msgstr "Résultat du scraping :"
+
+#: templates/analisis.html:34
+msgid "No scraping data available."
+msgstr "Aucune donnée de scraping disponible."
+
+#: templates/analisis.html:37 templates/analisis.html:38
+msgid "Web Analysis Result"
+msgstr "Résultat de l'analyse web"
+
+#: templates/analisis.html:37
+msgid "Send with Gmail"
+msgstr "Envoyer avec Gmail"
+
+#: templates/analisis.html:38
+msgid "Send with Outlook"
+msgstr "Envoyer avec Outlook"
+
+#: templates/analisis.html:42
+msgid "Perform a Web Page Analysis"
+msgstr "Réaliser une analyse de page web"
+
+#: templates/analisis.html:46
+msgid "Enter URL"
+msgstr "Entrez l'URL"
+
+#: templates/analisis.html:49
+msgid "Analyze Page"
+msgstr "Analyser la page"
+
+#: templates/analisis.html:53 templates/search_console.html:44
+msgid "Please wait, we are analyzing the URL..."
+msgstr "Veuillez patienter, nous analysons l'URL…"
+
+#: templates/analisis.html:67
+msgid "Please enter a full URL starting with http:// or https://"
+msgstr "Veuillez entrer une URL complète commençant par http:// ou https://"
+
+#: templates/analytics_form.html:5
+msgid "Web Traffic Analysis"
+msgstr "Analyse du Trafic Web"
+
+#: templates/analytics_form.html:8
+msgid "Analyze your website traffic"
+msgstr "Analysez le trafic de votre site web"
+
+#: templates/analytics_form.html:16
+msgid "Property ID"
+msgstr "ID de propriété"
+
+#: templates/analytics_form.html:20
+msgid "Start Date (YYYY-MM-DD or 'today')"
+msgstr "Date de début (AAAA-MM-JJ ou 'aujourd'hui')"
+
+#: templates/analytics_form.html:24
+msgid "End Date (YYYY-MM-DD or 'today')"
+msgstr "Date de fin (AAAA-MM-JJ ou 'aujourd'hui')"
+
+#: templates/analytics_form.html:27
+msgid "Generate Analysis"
+msgstr "Générer l'analyse"
+
+#: templates/analytics_form.html:31 templates/calculadora.html:66
+msgid "Please wait, we are analyzing the metric..."
+msgstr "Veuillez patienter, nous analysons la métrique…"
+
+#: templates/analytics_form.html:59 templates/pagespeed.html:46
+#: templates/pagespeed.html:56
+msgid "Error:"
+msgstr "Erreur :"
+
+#: templates/analytics_form.html:69
+msgid "Charts"
+msgstr "Graphiques"
+
+#: templates/analytics_form.html:72
+msgid "Active Users by Medium (Pie Chart)"
+msgstr "Utilisateurs actifs par canal (Diagramme circulaire)"
+
+#: templates/analytics_form.html:76
+msgid "Daily Active Users (Line Chart)"
+msgstr "Utilisateurs actifs quotidiens (Graphique linéaire)"
+
+#: templates/analytics_form.html:81
+msgid "Page Reports"
+msgstr "Rapports de pages"
+
+#: templates/analytics_form.html:84
+msgid "Top 10 Visited Pages"
+msgstr "Top 10 des pages les plus visitées"
+
+#: templates/analytics_form.html:88
+msgid "Top 10 Landing Pages"
+msgstr "Top 10 des pages d'atterrissage"
+
+#: templates/analytics_form.html:93
+msgid "Analysis Summary"
+msgstr "Résumé de l'analyse"
+
+#: templates/analytics_form.html:127
+msgid "Active Users by Medium"
+msgstr "Utilisateurs actifs par canal"
+
+#: templates/analytics_form.html:140
+msgid "Daily Active Users by Medium"
+msgstr "Utilisateurs actifs quotidiens par canal"
+
+#: templates/analytics_form.html:148
+msgid "An error occurred:"
+msgstr "Une erreur est survenue :"
+
+#: templates/base.html:18 templates/comprar_creditos.html:66
+#: templates/index.html:19
+msgid "Credits:"
+msgstr "Crédits :"
+
+#: templates/base.html:21 templates/index.html:22
+msgid "Error fetching credits:"
+msgstr "Erreur lors de la récupération des crédits :"
+
+#: templates/base.html:36 templates/index.html:34
+#: templates/privacy_policy.html:23
+msgid "logo"
+msgstr "logo"
+
+#: templates/base.html:39 templates/index.html:37
+msgid "Credits: Loading..."
+msgstr "Crédits : Chargement…"
+
+#: templates/base.html:49 templates/index.html:47
+msgid "Profile"
+msgstr "Profil"
+
+#: templates/base.html:50 templates/comprar_creditos.html:68
+#: templates/index.html:48 templates/no_credits.html:15
+msgid "Buy Credits"
+msgstr "Acheter des crédits"
+
+#: templates/base.html:52 templates/index.html:50
+msgid "Approve Beta Access"
+msgstr "Approuver l'accès Beta"
+
+#: templates/base.html:53 templates/index.html:51
+msgid "Metrics Dashboard"
+msgstr "Tableau de bord des indicateurs"
+
+#: templates/base.html:55 templates/index.html:53
+msgid "Log Out"
+msgstr "Se déconnecter"
+
+#: templates/base.html:68
+msgid "Toggle navigation"
+msgstr "Basculer la navigation"
+
+#: templates/base.html:76 templates/index.html:76
+msgid "Business Ideas"
+msgstr "Idées d'affaires"
+
+#: templates/base.html:81 templates/index.html:88
+msgid "Marketing Strategies"
+msgstr "Stratégies marketing"
+
+#: templates/base.html:86 templates/calculadora.html:7 templates/index.html:100
+msgid "Metrics Calculator"
+msgstr "Calculateur de métriques"
+
+#: templates/base.html:91 templates/funnel.html:10 templates/index.html:112
+msgid "Funnel Analysis"
+msgstr "Analyse d'entonnoir"
+
+#: templates/base.html:96 templates/index.html:124
+msgid "Website Analysis"
+msgstr "Analyse du site web"
+
+#: templates/base.html:101 templates/index.html:136
+msgid "PageSpeed Insights"
+msgstr "Aperçu de PageSpeed"
+
+#: templates/base.html:106 templates/index.html:148
+msgid "SEO Performance Analysis"
+msgstr "Analyse SEO"
+
+#: templates/base.html:112 templates/google_ads.html:2
+#: templates/google_ads.html:5 templates/index.html:161
+msgid "Google Ads Analysis"
+msgstr "Analyse des annonces Google"
+
+#: templates/base.html:117 templates/index.html:173
+msgid "Meta Ads Analysis"
+msgstr "Analyse des annonces Meta"
+
+#: templates/base.html:122 templates/index.html:185
+msgid "Web Traffic Analysis"
+msgstr "Analyse du Trafic Web"
+
+#: templates/base.html:128 templates/index.html:198
+msgid "CRM Analysis"
+msgstr "Analyse CRM"
+
+#: templates/base.html:133 templates/index.html:210
+msgid "Marketing News"
+msgstr "Actualités marketing"
+
+#: templates/base.html:167 templates/index.html:218
+#: templates/privacy_policy.html:97
+msgid "Go to top"
+msgstr "Retour en haut"
+
+#: templates/base.html:172 templates/index.html:222
+msgid "Chatbot"
+msgstr "Chatbot"
+
+#: templates/base.html:178 templates/index.html:227
+msgid "Your Growth Marketing Assistant"
+msgstr "Votre assistant en marketing de croissance"
+
+#: templates/base.html:181 templates/index.html:230
+msgid "Type here..."
+msgstr "Tapez ici…"
+
+#: templates/base.html:184 templates/index.html:233
+msgid "Send"
+msgstr "Envoyer"
+
+#: templates/calculadora.html:12
+msgid "Engagement Rate"
+msgstr "Taux d'engagement"
+
+#: templates/calculadora.html:15
+msgid "Number of Interactions:"
+msgstr "Nombre d'interactions :"
+
+#: templates/calculadora.html:19
+msgid "Reach:"
+msgstr "Portée :"
+
+#: templates/calculadora.html:22
+msgid "Calculate Engagement"
+msgstr "Calculer l'engagement"
+
+#: templates/calculadora.html:26
+msgid "Conversion Rate"
+msgstr "Taux de conversion"
+
+#: templates/calculadora.html:29
+msgid "Number of Visitors:"
+msgstr "Nombre de visiteurs :"
+
+#: templates/calculadora.html:33
+msgid "Number of Conversions:"
+msgstr "Nombre de conversions :"
+
+#: templates/calculadora.html:36
+msgid "Calculate Conversion"
+msgstr "Calculer la conversion"
+
+#: templates/calculadora.html:40
+msgid "ROI"
+msgstr "ROI"
+
+#: templates/calculadora.html:43
+msgid "Earnings (USD):"
+msgstr "Gains (USD) :"
+
+#: templates/calculadora.html:44 templates/calculadora.html:48
+#: templates/ideas_de_negocios.html:36
+msgid "Enter a decimal number (e.g., 123.45)"
+msgstr "Entrez un nombre décimal (par exemple, 123.45)"
+
+#: templates/calculadora.html:47
+msgid "Costs (USD):"
+msgstr "Coûts (USD) :"
+
+#: templates/calculadora.html:50
+msgid "Calculate ROI"
+msgstr "Calculer le ROI"
+
+#: templates/calculadora.html:99
+msgid "Engagement Rate:"
+msgstr "Taux d'engagement :"
+
+#: templates/calculadora.html:132
+msgid "Conversion Rate:"
+msgstr "Taux de conversion :"
+
+#: templates/calculadora.html:165
+msgid "ROI:"
+msgstr "ROI :"
+
+#: templates/comprar_creditos.html:60
+msgid "Choose Your Credits Plan"
+msgstr "Choisissez votre forfait de crédits"
+
+#: templates/comprar_creditos.html:67
+msgid "Price:"
+msgstr "Prix :"
+
+#: templates/error.html:2
+msgid "Error | Nexus Metriks"
+msgstr "Erreur | Nexus Metriks"
+
+#: templates/error.html:7
+msgid "Oops! Something went wrong"
+msgstr "Oups ! Quelque chose s'est mal passé"
+
+#: templates/error.html:9
+msgid "We are constantly improving our platform."
+msgstr "Nous améliorons constamment notre plateforme."
+
+#: templates/error.html:10
+msgid "Return to Home Page"
+msgstr "Retour à la page d'accueil"
+
+#: templates/error.html:13
+msgid ""
+"We apologize for the inconvenience. We are working on a technical issue "
+"with our platform. Please try again later."
+msgstr "Nous vous prions de nous excuser pour le désagrément. Nous travaillons sur un problème technique affectant notre plateforme. Veuillez réessayer plus tard."
+
+#: templates/estrategias_de_marketing.html:5
+msgid "Your Digital Marketing Strategy Generator"
+msgstr "Votre générateur de stratégies de marketing digital"
+
+#: templates/estrategias_de_marketing.html:10
+msgid "Digital Marketing Strategy Suggestions"
+msgstr "Suggestions de stratégies de marketing digital"
+
+#: templates/estrategias_de_marketing.html:17
+msgid "Let's Generate Your Custom Digital Marketing Strategy"
+msgstr "Générons votre stratégie de marketing digital personnalisée"
+
+#: templates/estrategias_de_marketing.html:22
+msgid "What is your company's business model?"
+msgstr "Quel est le modèle économique de votre entreprise ?"
+
+#: templates/estrategias_de_marketing.html:23
+msgid "Describe your business model:"
+msgstr "Décrivez votre modèle économique :"
+
+#: templates/estrategias_de_marketing.html:25
+msgid "Please describe your business model."
+msgstr "Veuillez décrire votre modèle économique."
+
+#: templates/estrategias_de_marketing.html:26
+msgid "Process Business Model"
+msgstr "Traiter le modèle économique"
+
+#: templates/estrategias_de_marketing.html:29
+msgid "What is the unique value proposition of your product or service?"
+msgstr "Quelle est la proposition de valeur unique de votre produit ou service ?"
+
+#: templates/estrategias_de_marketing.html:30
+msgid "Describe your unique value proposition:"
+msgstr "Décrivez votre proposition de valeur unique :"
+
+#: templates/estrategias_de_marketing.html:32
+msgid "Please describe your unique value proposition."
+msgstr "Veuillez décrire votre proposition de valeur unique."
+
+#: templates/estrategias_de_marketing.html:33
+msgid "Process Value Proposition"
+msgstr "Traiter la proposition de valeur"
+
+#: templates/estrategias_de_marketing.html:36
+msgid "What is your ideal customer like?"
+msgstr "À quoi ressemble votre client idéal ?"
+
+#: templates/estrategias_de_marketing.html:37
+msgid "Describe your ideal customer:"
+msgstr "Décrivez votre client idéal :"
+
+#: templates/estrategias_de_marketing.html:39
+msgid "Please describe your ideal customer."
+msgstr "Veuillez décrire votre client idéal."
+
+#: templates/estrategias_de_marketing.html:40
+msgid "Process Ideal Customer"
+msgstr "Traiter le client idéal"
+
+#: templates/estrategias_de_marketing.html:43
+msgid "What was your revenue last month?"
+msgstr "Quel était votre chiffre d'affaires le mois dernier ?"
+
+#: templates/estrategias_de_marketing.html:44
+msgid "Enter your revenue for last month (in USD):"
+msgstr "Entrez votre chiffre d'affaires du mois dernier (en USD) :"
+
+#: templates/estrategias_de_marketing.html:45
+msgid "Enter a decimal number (e.g., 12345.67)"
+msgstr "Entrez un nombre décimal (par exemple, 12345.67)"
+
+#: templates/estrategias_de_marketing.html:46
+msgid "Please enter a valid decimal number (e.g., 12345.67)"
+msgstr "Veuillez entrer un nombre décimal valide (par exemple, 12345.67)"
+
+#: templates/estrategias_de_marketing.html:47
+msgid "Process Revenue"
+msgstr "Traiter le chiffre d'affaires"
+
+#: templates/estrategias_de_marketing.html:50
+msgid "What is your company's commercial goal?"
+msgstr "Quel est l'objectif commercial de votre entreprise ?"
+
+#: templates/estrategias_de_marketing.html:51
+msgid "Describe your commercial goal:"
+msgstr "Décrivez votre objectif commercial :"
+
+#: templates/estrategias_de_marketing.html:53
+msgid "Please describe your commercial goal."
+msgstr "Veuillez décrire votre objectif commercial."
+
+#: templates/estrategias_de_marketing.html:54
+msgid "Process Commercial Goal"
+msgstr "Traiter l'objectif commercial"
+
+#: templates/estrategias_de_marketing.html:57
+msgid ""
+"What is the problem or challenge currently preventing you from achieving "
+"your goals?"
+msgstr "Quel est le problème ou le défi qui vous empêche actuellement d'atteindre vos objectifs ?"
+
+#: templates/estrategias_de_marketing.html:58
+msgid "Describe the problem or challenge:"
+msgstr "Décrivez le problème ou le défi :"
+
+#: templates/estrategias_de_marketing.html:60
+msgid "Please describe the problem or challenge."
+msgstr "Veuillez décrire le problème ou le défi."
+
+#: templates/estrategias_de_marketing.html:61
+msgid "Process Problem"
+msgstr "Traiter le problème"
+
+#: templates/estrategias_de_marketing.html:64
+msgid "What human and financial resources are available?"
+msgstr "Quelles ressources humaines et financières sont disponibles ?"
+
+#: templates/estrategias_de_marketing.html:65
+msgid "Describe the available resources:"
+msgstr "Décrivez les ressources disponibles :"
+
+#: templates/estrategias_de_marketing.html:67
+msgid "Please describe the available resources."
+msgstr "Veuillez décrire les ressources disponibles."
+
+#: templates/estrategias_de_marketing.html:68
+msgid "Process Resources"
+msgstr "Traiter les ressources"
+
+#: templates/estrategias_de_marketing.html:71
+msgid "How much effort are you willing to invest to achieve your goal?"
+msgstr "Quel effort êtes-vous prêt à investir pour atteindre votre objectif ?"
+
+#: templates/estrategias_de_marketing.html:72
+msgid "Describe your level of effort:"
+msgstr "Décrivez votre niveau d'effort :"
+
+#: templates/estrategias_de_marketing.html:74
+msgid "Please describe your level of effort."
+msgstr "Veuillez décrire votre niveau d'effort."
+
+#: templates/estrategias_de_marketing.html:75
+msgid "Process Effort"
+msgstr "Traiter l'effort"
+
+#: templates/estrategias_de_marketing.html:78
+msgid ""
+"What is the name of the company or business for which you want to "
+"generate a strategy?"
+msgstr "Quel est le nom de l'entreprise ou du commerce pour lequel vous souhaitez générer une stratégie ?"
+
+#: templates/estrategias_de_marketing.html:79
+msgid "What is your business called?"
+msgstr "Comment s'appelle votre entreprise ?"
+
+#: templates/estrategias_de_marketing.html:81
+msgid "Please provide the business name."
+msgstr "Veuillez fournir le nom de l'entreprise."
+
+#: templates/estrategias_de_marketing.html:82
+msgid "Generate Strategy"
+msgstr "Générer la stratégie"
+
+#: templates/estrategias_de_marketing.html:87
+msgid "Please wait, we are generating your marketing strategy..."
+msgstr "Veuillez patienter, nous générons votre stratégie marketing…"
+
+#: templates/facebook_ads.html:5
+msgid "Facebook Ads Analysis"
+msgstr "Analyse des publicités Facebook"
+
+#: templates/facebook_ads.html:8
+msgid "Analyze the performance of your Meta Ads campaigns."
+msgstr "Analysez la performance de vos campagnes Meta Ads."
+
+#: templates/facebook_ads.html:14
+msgid "Start Date (YYYY-MM-DD)"
+msgstr "Date de début (AAAA-MM-JJ)"
+
+#: templates/facebook_ads.html:18
+msgid "End Date (YYYY-MM-DD)"
+msgstr "Date de fin (AAAA-MM-JJ)"
+
+#: templates/facebook_ads.html:21 templates/pagespeed.html:14
+#: templates/search_console.html:30
+msgid "Analyze"
+msgstr "Analyser"
+
+#: templates/facebook_ads.html:35
+msgid "Campaign Summary"
+msgstr "Résumé de la campagne"
+
+#: templates/facebook_ads.html:40
+msgid "Clicks Distribution per Campaign"
+msgstr "Répartition des clics par campagne"
+
+#: templates/facebook_ads.html:46
+msgid "Spend Distribution per Campaign"
+msgstr "Répartition des dépenses par campagne"
+
+#: templates/facebook_ads.html:52
+msgid "Impressions Distribution per Campaign"
+msgstr "Répartition des impressions par campagne"
+
+#: templates/facebook_ads.html:58
+msgid "Leads Distribution per Campaign"
+msgstr "Répartition des prospects par campagne"
+
+#: templates/facebook_ads.html:64
+msgid "Messages Distribution per Campaign"
+msgstr "Répartition des messages par campagne"
+
+#: templates/facebook_ads.html:74
+msgid "Campaign Data"
+msgstr "Données de campagne"
+
+#: templates/feedback_form.html:5
+msgid "Leave Us Your Feedback"
+msgstr "Laissez-nous vos commentaires"
+
+#: templates/feedback_form.html:8
+msgid "Tell us about your experience"
+msgstr "Parlez-nous de votre expérience"
+
+#: templates/feedback_form.html:12
+msgid "How would you rate your experience?"
+msgstr "Comment évalueriez-vous votre expérience ?"
+
+#: templates/feedback_form.html:14
+msgid "Select a rating"
+msgstr "Sélectionnez une note"
+
+#: templates/feedback_form.html:18 templates/feedback_form.html:20
+#: templates/feedback_form.html:22 templates/feedback_form.html:24
+#: templates/feedback_form.html:104
+msgid "stars"
+msgstr "étoiles"
+
+#: templates/feedback_form.html:26 templates/feedback_form.html:104
+msgid "star"
+msgstr "étoile"
+
+#: templates/feedback_form.html:30
+msgid "How easy was it to use the platform?"
+msgstr "À quel point la plateforme était-elle facile à utiliser ?"
+
+#: templates/feedback_form.html:32
+msgid "Select the level of ease"
+msgstr "Sélectionnez le niveau de facilité"
+
+#: templates/feedback_form.html:36 templates/feedback_form.html:116
+msgid "Very easy"
+msgstr "Très facile"
+
+#: templates/feedback_form.html:38 templates/feedback_form.html:119
+msgid "Easy"
+msgstr "Facile"
+
+#: templates/feedback_form.html:40 templates/feedback_form.html:122
+msgid "Acceptable"
+msgstr "Acceptable"
+
+#: templates/feedback_form.html:42 templates/feedback_form.html:125
+msgid "Difficult"
+msgstr "Difficile"
+
+#: templates/feedback_form.html:44 templates/feedback_form.html:128
+msgid "Very difficult"
+msgstr "Très difficile"
+
+#: templates/feedback_form.html:47
+msgid "How can we improve?"
+msgstr "Comment pouvons-nous nous améliorer ?"
+
+#: templates/feedback_form.html:50 templates/google_ads.html:28
+msgid "Submit"
+msgstr "Soumettre"
+
+#: templates/feedback_form.html:104
+msgid "Rating:"
+msgstr "Note :"
+
+#: templates/feedback_form.html:131
+msgid "Ease level:"
+msgstr "Niveau de facilité :"
+
+#: templates/funnel.html:6
+msgid "Conversion Funnel"
+msgstr "Entonnoir de conversion"
+
+#: templates/funnel.html:26
+msgid "Clicks:"
+msgstr "Clics :"
+
+#: templates/funnel.html:32
+msgid "Contacts:"
+msgstr "Contacts :"
+
+#: templates/funnel.html:38
+msgid "Leads:"
+msgstr "Prospects :"
+
+#: templates/funnel.html:50
+msgid "Opportunities:"
+msgstr "Opportunités :"
+
+#: templates/funnel.html:56
+msgid "Customers:"
+msgstr "Clients :"
+
+#: templates/funnel.html:61
+msgid "Show Funnel"
+msgstr "Afficher l'entonnoir"
+
+#: templates/google_ads.html:11
+msgid "Analyze the performance of your Google Ads campaigns"
+msgstr "Analysez la performance de vos campagnes Google Ads"
+
+#: templates/google_ads.html:13
+msgid "Enter your campaign details:"
+msgstr "Entrez les détails de votre campagne :"
+
+#: templates/google_ads.html:16
+msgid "Customer ID:"
+msgstr "ID client :"
+
+#: templates/google_ads.html:22 templates/hubspotcrm.html:100
+#: templates/search_console.html:24
+msgid "Start Date:"
+msgstr "Date de début :"
+
+#: templates/google_ads.html:24 templates/hubspotcrm.html:102
+#: templates/search_console.html:26
+msgid "End Date:"
+msgstr "Date de fin :"
+
+#: templates/hubspotcrm.html:2 templates/hubspotcrm.html:5
+msgid "HubSpot CRM"
+msgstr "HubSpot CRM"
+
+#: templates/hubspotcrm.html:12
+msgid "HubSpot CRM Report"
+msgstr "Rapport HubSpot CRM"
+
+#: templates/hubspotcrm.html:17
+msgid "Metric"
+msgstr "Métrique"
+
+#: templates/hubspotcrm.html:18
+msgid "Value"
+msgstr "Valeur"
+
+#: templates/hubspotcrm.html:23
+msgid "Total Contacts"
+msgstr "Total des contacts"
+
+#: templates/hubspotcrm.html:27
+msgid "Total Open Deals"
+msgstr "Total des affaires en cours"
+
+#: templates/hubspotcrm.html:31
+msgid "Total Closed Deals"
+msgstr "Total des affaires conclues"
+
+#: templates/hubspotcrm.html:35
+msgid "Total Value of Closed Deals"
+msgstr "Valeur totale des affaires conclues"
+
+#: templates/hubspotcrm.html:44
+msgid "CRM Summary"
+msgstr "Résumé CRM"
+
+#: templates/hubspotcrm.html:51
+msgid "Contacts Table"
+msgstr "Tableau des contacts"
+
+#: templates/hubspotcrm.html:58
+msgid "Set Scoring Factors"
+msgstr "Définir les facteurs de notation"
+
+#: templates/hubspotcrm.html:65
+msgid "Weight:"
+msgstr "Poids :"
+
+#: templates/hubspotcrm.html:68
+msgid "Unique Values:"
+msgstr "Valeurs uniques :"
+
+#: templates/hubspotcrm.html:81
+msgid "Update Factors"
+msgstr "Mettre à jour les facteurs"
+
+#: templates/hubspotcrm.html:86 templates/hubspotcrm.html:87
+msgid "Generate Scoring"
+msgstr "Générer la notation"
+
+#: templates/hubspotcrm.html:91
+msgid "Scoring Table"
+msgstr "Tableau de notation"
+
+#: templates/hubspotcrm.html:98
+msgid "Generate Performance Report"
+msgstr "Générer un rapport de performance"
+
+#: templates/hubspotcrm.html:104
+msgid "Generate Report"
+msgstr "Générer le rapport"
+
+#: templates/hubspotcrm.html:109
+msgid "Welcome to the HubSpot Integration"
+msgstr "Bienvenue dans l'intégration HubSpot"
+
+#: templates/hubspotcrm.html:111
+msgid "Connect with HubSpot"
+msgstr "Connectez-vous avec HubSpot"
+
+#: templates/hubspotcrm.html:166
+msgid "Factors updated"
+msgstr "Facteurs mis à jour"
+
+#: templates/hubspotcrm.html:168
+msgid "Error updating factors"
+msgstr "Erreur lors de la mise à jour des facteurs"
+
+#: templates/hubspotcrm.html:204
+msgid "Error generating scoring"
+msgstr "Erreur lors de la génération de la notation"
+
+#: templates/ideas_de_negocios.html:5
+msgid "Business Idea Generator"
+msgstr "Générateur d'idées d'affaires"
+
+#: templates/ideas_de_negocios.html:9
+msgid "Let's Generate Your New Business Idea"
+msgstr "Générons votre nouvelle idée d'affaires"
+
+#: templates/ideas_de_negocios.html:12
+msgid "Business Suggestions"
+msgstr "Suggestions d'affaires"
+
+#: templates/ideas_de_negocios.html:20
+msgid ""
+"What technical and/or professional skills do you currently have and on "
+"which you would like to base your new business?"
+msgstr "Quelles compétences techniques et/ou professionnelles possédez-vous actuellement et sur lesquelles vous souhaitez fonder votre nouvelle entreprise ?"
+
+#: templates/ideas_de_negocios.html:21
+msgid "Enter only the skills you excel at:"
+msgstr "Entrez uniquement les compétences dans lesquelles vous excellez :"
+
+#: templates/ideas_de_negocios.html:22
+msgid "Example: soccer, programming, marketing, sales, etc..."
+msgstr "Exemple : football, programmation, marketing, ventes, etc..."
+
+#: templates/ideas_de_negocios.html:23
+msgid "Please enter your skills."
+msgstr "Veuillez entrer vos compétences."
+
+#: templates/ideas_de_negocios.html:24
+msgid "Process Skills"
+msgstr "Traiter les compétences"
+
+#: templates/ideas_de_negocios.html:27
+msgid ""
+"What specific interests do you have in relation to the market and target "
+"audience of this new project?"
+msgstr "Quels intérêts spécifiques avez-vous par rapport au marché et au public cible de ce nouveau projet ?"
+
+#: templates/ideas_de_negocios.html:28
+msgid "Enter the market sector of interest:"
+msgstr "Entrez le secteur de marché d'intérêt :"
+
+#: templates/ideas_de_negocios.html:29
+msgid "e.g., sports industry, products for athletes, etc..."
+msgstr "par exemple, industrie du sport, produits pour les sportifs, etc..."
+
+#: templates/ideas_de_negocios.html:30
+msgid "Please enter your interests."
+msgstr "Veuillez entrer vos centres d'intérêt."
+
+#: templates/ideas_de_negocios.html:31
+msgid "Process Interests"
+msgstr "Traiter les centres d'intérêt"
+
+#: templates/ideas_de_negocios.html:34
+msgid ""
+"How much capital do you have available to invest in launching a new "
+"business?"
+msgstr "Quel capital avez-vous à disposition pour investir dans le lancement d'une nouvelle entreprise ?"
+
+#: templates/ideas_de_negocios.html:35
+msgid "Enter your capital amount (in USD):"
+msgstr "Entrez le montant de votre capital (en USD) :"
+
+#: templates/ideas_de_negocios.html:37
+msgid "Please enter a valid decimal number (e.g., 123.45)"
+msgstr "Veuillez entrer un nombre décimal valide (par exemple, 123.45)"
+
+#: templates/ideas_de_negocios.html:38
+msgid "Process Capital"
+msgstr "Traiter le capital"
+
+#: templates/ideas_de_negocios.html:41
+msgid ""
+"How are various aspects of the economy performing in your environment, "
+"such as growth, inflation, unemployment, or financial stability?"
+msgstr "Comment se comportent les différents aspects de l'économie dans votre environnement, tels que la croissance, l'inflation, le chômage ou la stabilité financière ?"
+
+#: templates/ideas_de_negocios.html:42
+msgid "Enter your current economic scenario:"
+msgstr "Entrez votre scénario économique actuel :"
+
+#: templates/ideas_de_negocios.html:44
+msgid "Please describe the economic scenario."
+msgstr "Veuillez décrire le scénario économique."
+
+#: templates/ideas_de_negocios.html:45
+msgid "Process Scenario"
+msgstr "Traiter le scénario"
+
+#: templates/ideas_de_negocios.html:48
+msgid "How much time are you willing to dedicate to your business idea?"
+msgstr "Combien de temps êtes-vous prêt à consacrer à votre idée d'affaires ?"
+
+#: templates/ideas_de_negocios.html:49
+msgid "Enter your available time commitment:"
+msgstr "Indiquez le temps dont vous disposez :"
+
+#: templates/ideas_de_negocios.html:51
+msgid "Please enter the amount of time you can commit."
+msgstr "Veuillez entrer le nombre d'heures que vous pouvez consacrer."
+
+#: templates/ideas_de_negocios.html:52
+msgid "Generate Idea"
+msgstr "Générer l'idée"
+
+#: templates/ideas_de_negocios.html:57
+msgid "Please wait, we are generating your business idea..."
+msgstr "Veuillez patienter, nous générons votre idée d'affaires…"
+
+#: templates/index.html:6 templates/privacy_policy.html:6
+msgid "Nexus Metrics"
+msgstr "Nexus Metrics"
+
+#: templates/index.html:64
+msgid "AI-powered platform for digital marketing analysis"
+msgstr "Plateforme alimentée par l'IA pour l'analyse du marketing digital"
+
+#: templates/index.html:77
+msgid "Find innovative ideas for your new business."
+msgstr "Trouvez des idées innovantes pour votre nouvelle entreprise."
+
+#: templates/index.html:89
+msgid "Build effective marketing strategies."
+msgstr "Élaborez des stratégies marketing efficaces."
+
+#: templates/index.html:101
+msgid "Easily calculate and understand your KPIs."
+msgstr "Calculez et comprenez facilement vos indicateurs clés de performance (KPI)."
+
+#: templates/index.html:113
+msgid "Discover optimization opportunities for your conversion funnel."
+msgstr "Découvrez des opportunités d'optimisation pour votre entonnoir de conversion."
+
+#: templates/index.html:125
+msgid "Insights to improve your website performance."
+msgstr "Des insights pour améliorer les performances de votre site web."
+
+#: templates/index.html:137
+msgid "Analyze performance and optimize your website load speed."
+msgstr "Analysez les performances et optimisez la vitesse de chargement de votre site web."
+
+#: templates/index.html:149
+msgid "Improve your search engine rankings."
+msgstr "Améliorez votre classement dans les moteurs de recherche."
+
+#: templates/index.html:162
+msgid "Analyze and optimize your ad campaigns."
+msgstr "Analysez et optimisez vos campagnes publicitaires."
+
+#: templates/index.html:174
+msgid "Evaluate performance on Meta platforms."
+msgstr "Évaluez les performances sur les plateformes Meta."
+
+#: templates/index.html:186
+msgid "Monitor and analyze web traffic trends."
+msgstr "Surveillez et analysez les tendances du trafic web."
+
+#: templates/index.html:199
+msgid "Manage and analyze your customer data."
+msgstr "Gérez et analysez les données de vos clients."
+
+#: templates/index.html:211
+msgid "Stay updated with the latest marketing news."
+msgstr "Restez informé des dernières actualités marketing."
+
+#: templates/login.html:6
+msgid "Sign In | Nexus Metrics"
+msgstr "Se connecter | Nexus Metrics"
+
+#: templates/login.html:22 templates/onboarding.html:22 templates/register.html:22 templates/thank_you.html:22
+msgid "Animation"
+msgstr "Animation"
+
+#: templates/login.html:24 templates/onboarding.html:24 templates/thank_you.html:24
+msgid "NEXUSMETRIKS"
+msgstr "NEXUSMETRIKS"
+
+#: templates/login.html:25 templates/onboarding.html:25 templates/register.html:25 templates/thank_you.html:25
+msgid "ACCESSIBLE, UNDERSTANDABLE & SUSTAINABLE"
+msgstr "ACCESSIBLE, COMPRÉHENSIBLE & DURABLE"
+
+#: templates/login.html:28
+msgid "Sign in now"
+msgstr "Connectez-vous maintenant"
+
+#: templates/login.html:31 templates/register.html:35
+msgid "Email"
+msgstr "E-mail"
+
+#: templates/login.html:35 templates/register.html:39
+msgid "Password"
+msgstr "Mot de passe"
+
+#: templates/login.html:38 templates/register.html:48
+msgid "Sign In"
+msgstr "Se connecter"
+
+#: templates/login.html:41
+msgid "Or sign in with your account"
+msgstr "Ou connectez-vous avec votre compte"
+
+#: templates/login.html:48
+msgid "Don't have an account?"
+msgstr "Vous n'avez pas de compte ?"
+
+#: templates/login.html:48
+msgid "Register here"
+msgstr "Inscrivez-vous ici"
+
+#: templates/marketing_consultant.html:6
+msgid "NexusMetriks: Digital Marketing Virtual Consultant"
+msgstr "NexusMetriks : Consultant virtuel en marketing digital"
+
+#: templates/marketing_consultant.html:8
+msgid ""
+"Transform your marketing metrics with AI. Make smart decisions, save "
+"time, and outperform your competition in seconds."
+msgstr "Transformez vos indicateurs marketing grâce à l'IA. Prenez des décisions éclairées, gagnez du temps et surpassez votre concurrence en quelques secondes."
+
+#: templates/marketing_consultant.html:9
+msgid ""
+"marketing AI, data analysis, marketing metrics, marketing tools, "
+"artificial intelligence marketing"
+msgstr "marketing IA, analyse de données, indicateurs marketing, outils marketing, marketing par intelligence artificielle"
+
+#: templates/marketing_consultant.html:13
+msgid "NexusMetriks: Intelligent Marketing with AI"
+msgstr "NexusMetriks : Marketing intelligent avec l'IA"
+
+#: templates/marketing_consultant.html:14
+msgid ""
+"Revolutionize your marketing strategy with real-time AI analysis. Make "
+"winning decisions without the hassle."
+msgstr "Révolutionnez votre stratégie marketing grâce à une analyse en temps réel par IA. Prenez des décisions gagnantes sans tracas."
+
+#: templates/marketing_consultant.html:18
+msgid "NexusMetriks: Your Data to the Max"
+msgstr "NexusMetriks : Vos données exploitées au maximum"
+
+#: templates/marketing_consultant.html:19
+msgid "Intelligent marketing with AI. Fast decisions, real results."
+msgstr "Marketing intelligent avec l'IA. Décisions rapides, résultats réels."
+
+#: templates/marketing_consultant.html:143
+#: templates/marketing_consultant.html:299
+msgid "⏰ Limited beta invitations available"
+msgstr "⏰ Invitations beta limitées disponibles"
+
+#: templates/marketing_consultant.html:147
+msgid "Digital Marketing Virtual Consultant"
+msgstr "Consultant virtuel en marketing digital"
+
+#: templates/marketing_consultant.html:148
+msgid "Turn your data into winning decisions"
+msgstr "Transformez vos données en décisions gagnantes"
+
+#: templates/marketing_consultant.html:149
+msgid "Try the App 🚀"
+msgstr "Essayez l'application 🚀"
+
+#: templates/marketing_consultant.html:158
+msgid ""
+"Efficient Marketing with Artificial Intelligence: Maximizing Your Data, "
+"No Excuses"
+msgstr "Marketing efficace avec l'intelligence artificielle : exploitez vos données au maximum, sans excuses"
+
+#: templates/marketing_consultant.html:164
+msgid "Hassle-free AI"
+msgstr "IA sans tracas"
+
+#: templates/marketing_consultant.html:167
+msgid ""
+"Analysis so smart it seems like magic – but with real data, not marketing"
+" spells."
+msgstr "Une analyse si intelligente qu'elle semble magique – mais avec de vraies données, pas des formules marketing."
+
+#: templates/marketing_consultant.html:171
+msgid "Unified Marketing"
+msgstr "Marketing unifié"
+
+#: templates/marketing_consultant.html:174
+msgid ""
+"Your complete strategy on one platform. Fewer tools, more coffee, better "
+"results."
+msgstr "Votre stratégie complète sur une seule plateforme. Moins d'outils, plus de café, de meilleurs résultats."
+
+#: templates/marketing_consultant.html:178
+msgid "Smart Budgeting"
+msgstr "Budget intelligent"
+
+#: templates/marketing_consultant.html:181
+msgid "Professional analysis without sacrificing your next vacation."
+msgstr "Une analyse professionnelle sans sacrifier vos prochaines vacances."
+
+#: templates/marketing_consultant.html:186
+msgid "Why an automated solution for marketing data analysis?"
+msgstr "Pourquoi une solution automatisée pour l'analyse des données marketing ?"
+
+#: templates/marketing_consultant.html:190
+msgid "Companies increasing their digital marketing investment"
+msgstr "Entreprises augmentant leur investissement en marketing digital"
+
+#: templates/marketing_consultant.html:194
+msgid "Latin companies using AI in digital strategies"
+msgstr "Entreprises latines utilisant l'IA dans leurs stratégies digitales"
+
+#: templates/marketing_consultant.html:198
+msgid "LatAm companies using social media as their primary channel"
+msgstr "Entreprises d'Amérique latine utilisant les réseaux sociaux comme canal principal"
+
+#: templates/marketing_consultant.html:204
+msgid "Ready to Revolutionize Your Marketing?"
+msgstr "Prêt à révolutionner votre marketing ?"
+
+#: templates/marketing_consultant.html:205
+msgid "Every second counts. Your competition is already taking action."
+msgstr "Chaque seconde compte. Votre concurrence est déjà en action."
+
+#: templates/marketing_consultant.html:208
+msgid "Join the Exclusive Beta! 🔓"
+msgstr "Rejoignez la bêta exclusive ! 🔓"
+
+#: templates/marketing_consultant.html:215
+msgid "All rights reserved."
+msgstr "Tous droits réservés."
+
+#: templates/marketing_consultant.html:216 templates/privacy_policy.html:48
+msgid "Privacy Policy"
+msgstr "Politique de confidentialité"
+
+#: templates/marketing_consultant.html:300
+msgid "💡 Next-generation artificial intelligence"
+msgstr "💡 Intelligence artificielle de nouvelle génération"
+
+#: templates/marketing_consultant.html:301
+msgid "🔥 Last spots: Transform your marketing analysis"
+msgstr "🔥 Dernières places : transformez votre analyse marketing"
+
+#: templates/marketing_consultant.html:302
+msgid "⭐ All the tools you need in one place"
+msgstr "⭐ Tous les outils dont vous avez besoin en un seul endroit"
+
+#: templates/no_credits.html:5
+msgid "You have run out of credits"
+msgstr "Vous n'avez plus de crédits"
+
+#: templates/no_credits.html:8
+msgid "Insufficient credits to use this tool"
+msgstr "Crédits insuffisants pour utiliser cet outil"
+
+#: templates/no_credits.html:11
+msgid "We are sorry, but you have exhausted your available credits."
+msgstr "Nous sommes désolés, mais vous avez épuisé vos crédits disponibles."
+
+#: templates/no_credits.html:12
+msgid ""
+"Don't worry! You can purchase a credits package that suits your budget to"
+" continue using our platform."
+msgstr "Ne vous inquiétez pas ! Vous pouvez acheter un forfait de crédits adapté à votre budget pour continuer à utiliser notre plateforme."
+
+#: templates/no_credits.html:14
+msgid "Get new credits now"
+msgstr "Obtenez de nouveaux crédits dès maintenant"
+
+#: templates/onboarding.html:6 templates/thank_you.html:6
+msgid "Welcome | Nexus Metrics"
+msgstr "Bienvenue | Nexus Metrics"
+
+#: templates/onboarding.html:29
+msgid "Welcome to the Private Beta"
+msgstr "Bienvenue dans la bêta privée"
+
+#: templates/onboarding.html:30
+msgid "Please complete the following form to finish your registration."
+msgstr "Veuillez remplir le formulaire suivant pour terminer votre inscription."
+
+#: templates/onboarding.html:33
+msgid "Market:"
+msgstr "Marché :"
+
+#: templates/onboarding.html:38
+msgid "How did you hear about our application?"
+msgstr "Comment avez-vous entendu parler de notre application ?"
+
+#: templates/onboarding.html:43
+msgid "Reason for trying the platform:"
+msgstr "Raison de l'essai de la plateforme :"
+
+#: templates/onboarding.html:47
+msgid "Sign up for beta"
+msgstr "Inscrivez-vous pour la bêta"
+
+#: templates/onboarding.html:50
+msgid "Not ready yet? "
+msgstr "Pas encore prêt ? "
+
+#: templates/onboarding.html:50 templates/thank_you.html:53
+msgid "Return"
+msgstr "Retour"
+
+#: templates/pagespeed.html:5
+msgid "PageSpeed Insights Analyzer"
+msgstr "Analyseur d'aperçus PageSpeed"
+
+#: templates/pagespeed.html:8
+msgid "Analyze the performance of your page"
+msgstr "Analysez la performance de votre page"
+
+#: templates/pagespeed.html:12
+msgid "Enter the URL to analyze"
+msgstr "Entrez l'URL à analyser"
+
+#: templates/pagespeed.html:33
+msgid "Loading analysis..."
+msgstr "Chargement de l'analyse..."
+
+#: templates/pago_cancelado.html:23
+msgid "El pago ha sido cancelado."
+msgstr "Le paiement a été annulé."
+
+#: templates/pago_cancelado.html:61
+msgid "The payment has been cancelled."
+msgstr "Le paiement a été annulé."
+
+#: templates/pago_cancelado.html:65
+msgid "We're sorry, your credit purchase has been stopped."
+msgstr "Nous sommes désolés, mais votre achat de crédits a été interrompu."
+
+#: templates/pago_cancelado.html:66
+msgid "You have canceled the purchase of credits. You can try again if you want."
+msgstr "Vous avez annulé l'achat de crédits. Vous pouvez réessayer si vous le souhaitez."
+
+#: templates/pago_cancelado.html:67 templates/pago_exitoso.html:41 #: templates/pago_fallido.html:30
+msgid "Return to Home"
+msgstr "Retour à l'accueil"
+
+#: templates/pago_exitoso.html:24
+msgid "Congratulations! You now have new credits."
+msgstr "Félicitations ! Vous disposez désormais de nouveaux crédits."
+
+#: templates/pago_exitoso.html:28
+msgid "Successful Purchase! 🎉"
+msgstr "Achat réussi ! 🎉"
+
+#: templates/pago_exitoso.html:29
+msgid "Thank you for your purchase,"
+msgstr "Merci pour votre achat,"
+
+#: templates/pago_exitoso.html:30
+msgid "You have acquired"
+msgstr "Vous avez acquis"
+
+#: templates/pago_exitoso.html:30
+msgid "credits on NexusMetriks."
+msgstr "crédits sur NexusMetriks."
+
+#: templates/pago_exitoso.html:33
+msgid "Payment ID:"
+msgstr "ID de paiement :"
+
+#: templates/pago_exitoso.html:34
+msgid "Payer ID:"
+msgstr "ID du payeur :"
+
+#: templates/pago_exitoso.html:38
+msgid "Download PDF Receipt"
+msgstr "Télécharger le reçu PDF"
+
+#: templates/pago_fallido.html:24 templates/pago_fallido.html:28
+msgid "We're sorry, your credit purchase has failed."
+msgstr "Nous sommes désolés, votre achat de crédits a échoué."
+
+#: templates/pago_fallido.html:29
+msgid "Please try again or contact us if the problem persists."
+msgstr "Veuillez réessayer ou nous contacter si le problème persiste."
+
+#: templates/privacy_policy.html:36
+msgid "Login"
+msgstr "Connexion"
+
+#: templates/privacy_policy.html:37 templates/register.html:46
+msgid "Register"
+msgstr "S'inscrire"
+
+#: templates/privacy_policy.html:49
+msgid "Last Updated:"
+msgstr "Dernière mise à jour :"
+
+#: templates/privacy_policy.html:50
+msgid ""
+"Thank you for using Nexus Metrics, your virtual assistant specialized in "
+"digital marketing. At Nexus Metrics, we are committed to protecting your "
+"privacy and personal data. This privacy policy explains how we collect, "
+"use, and protect the information you provide when using our application."
+msgstr "Merci d'utiliser Nexus Metrics, votre assistant virtuel spécialisé en marketing digital. Chez Nexus Metrics, nous nous engageons à protéger votre vie privée et vos données personnelles. Cette politique de confidentialité explique comment nous collectons, utilisons et protégeons les informations que vous fournissez lors de l'utilisation de notre application."
+
+#: templates/privacy_policy.html:52
+msgid "Information Collected"
+msgstr "Informations collectées"
+
+#: templates/privacy_policy.html:53
+msgid "We collect the following information when you use Nexus Metrics:"
+msgstr "Nous collectons les informations suivantes lorsque vous utilisez Nexus Metrics :"
+
+#: templates/privacy_policy.html:55
+msgid ""
+"Contact Information: We may collect your name, email address, and other "
+"contact details when you register or contact us."
+msgstr "Informations de contact : Nous pouvons collecter votre nom, adresse e-mail et autres coordonnées lorsque vous vous inscrivez ou nous contactez."
+
+#: templates/privacy_policy.html:56
+msgid ""
+"Device Information: We may collect information about the device you use "
+"to access our application, including your IP address, device type, "
+"operating system, and unique device identifier."
+msgstr "Informations sur l'appareil : Nous pouvons collecter des informations sur l'appareil que vous utilisez pour accéder à notre application, y compris votre adresse IP, le type d'appareil, le système d'exploitation et l'identifiant unique de l'appareil."
+
+#: templates/privacy_policy.html:57
+msgid ""
+"Usage Data: We may collect information about how you interact with our "
+"application, such as the pages you visit, the features you use, and the "
+"time you spend on our application."
+msgstr "Données d'utilisation : Nous pouvons collecter des informations sur la manière dont vous interagissez avec notre application, telles que les pages que vous visitez, les fonctionnalités utilisées et le temps que vous y passez."
+
+#: templates/privacy_policy.html:58
+msgid ""
+"Voluntarily Provided Information: You may provide additional information "
+"voluntarily when using our application, such as user preferences, "
+"feedback, and support requests."
+msgstr "Informations fournies volontairement : Vous pouvez fournir des informations supplémentaires volontairement lors de l'utilisation de notre application, telles que vos préférences, vos commentaires et vos demandes d'assistance."
+
+#: templates/privacy_policy.html:61
+msgid "Use of Information"
+msgstr "Utilisation des informations"
+
+#: templates/privacy_policy.html:62
+msgid "We use the collected information for the following purposes:"
+msgstr "Nous utilisons les informations collectées pour les finalités suivantes :"
+
+#: templates/privacy_policy.html:64
+msgid "To provide and maintain our application."
+msgstr "Pour fournir et maintenir notre application."
+
+#: templates/privacy_policy.html:65
+msgid "To personalize and improve your experience with our application."
+msgstr "Pour personnaliser et améliorer votre expérience avec notre application."
+
+#: templates/privacy_policy.html:66
+msgid ""
+"To communicate with you, respond to your inquiries, and provide technical support."
+msgstr "Pour communiquer avec vous, répondre à vos demandes et fournir une assistance technique."
+
+#: templates/privacy_policy.html:67
+msgid "To analyze usage trends and improve our application."
+msgstr "Pour analyser les tendances d'utilisation et améliorer notre application."
+
+#: templates/privacy_policy.html:68
+msgid "To comply with legal obligations and resolve disputes."
+msgstr "Pour se conformer aux obligations légales et résoudre les litiges."
+
+#: templates/privacy_policy.html:71
+msgid "Information Sharing"
+msgstr "Partage d'informations"
+
+#: templates/privacy_policy.html:72
+msgid ""
+"We do not share your personal information with third parties, except in "
+"the following circumstances:"
+msgstr "Nous ne partageons pas vos informations personnelles avec des tiers, sauf dans les circonstances suivantes :"
+
+#: templates/privacy_policy.html:74
+msgid "When required by law, regulations, or judicial orders."
+msgstr "Lorsque la loi, les règlements ou des ordonnances judiciaires l'exigent."
+
+#: templates/privacy_policy.html:75
+msgid ""
+"When necessary to protect our rights, property, or safety, or the rights, property, or safety of our users or others."
+msgstr "Lorsque cela est nécessaire pour protéger nos droits, notre propriété ou notre sécurité, ou ceux de nos utilisateurs ou d'autrui."
+
+#: templates/privacy_policy.html:76
+msgid "When we obtain your consent to share your information."
+msgstr "Lorsque nous obtenons votre consentement pour partager vos informations."
+
+#: templates/privacy_policy.html:79
+msgid "Information Security"
+msgstr "Sécurité des informations"
+
+#: templates/privacy_policy.html:80
+msgid ""
+"We take reasonable measures to protect your personal information from unauthorized access, disclosure, alteration, or destruction. However, please note that no security measure is completely foolproof."
+msgstr "Nous prenons des mesures raisonnables pour protéger vos informations personnelles contre tout accès, divulgation, modification ou destruction non autorisés. Cependant, veuillez noter qu'aucune mesure de sécurité n'est totalement infaillible."
+
+#: templates/privacy_policy.html:82
+msgid "Cookies"
+msgstr "Cookies"
+
+#: templates/privacy_policy.html:83
+msgid ""
+"We use cookies and similar technologies to enhance the functionality of our application and provide you with a more personalized experience. You can manage your cookie preferences through your browser settings."
+msgstr "Nous utilisons des cookies et des technologies similaires pour améliorer la fonctionnalité de notre application et vous offrir une expérience plus personnalisée. Vous pouvez gérer vos préférences en matière de cookies via les paramètres de votre navigateur."
+
+#: templates/privacy_policy.html:85
+msgid "Third-Party Websites"
+msgstr "Sites Web tiers"
+
+#: templates/privacy_policy.html:86
+msgid ""
+"Our application may contain links to third-party websites. This privacy policy does not apply to those sites, so we recommend reviewing their privacy policies."
+msgstr "Notre application peut contenir des liens vers des sites Web tiers. Cette politique de confidentialité ne s'applique pas à ces sites, nous vous recommandons donc de consulter leurs politiques de confidentialité."
+
+#: templates/privacy_policy.html:88
+msgid "Changes to the Privacy Policy"
+msgstr "Modifications de la politique de confidentialité"
+
+#: templates/privacy_policy.html:89
+msgid ""
+"We reserve the right to update this privacy policy at any time. We will notify you of any changes by posting the updated privacy policy in our application. We recommend that you review this page periodically to stay informed of any changes."
+msgstr "Nous nous réservons le droit de mettre à jour cette politique de confidentialité à tout moment. Nous vous informerons de toute modification en publiant la politique de confidentialité mise à jour dans notre application. Nous vous recommandons de consulter cette page régulièrement pour rester informé des changements."
+
+#: templates/privacy_policy.html:91
+msgid "Contact Us"
+msgstr "Contactez-nous"
+
+#: templates/privacy_policy.html:92
+msgid ""
+"If you have any questions about this privacy policy or our privacy practices, please contact us at info@nexusmetriks.com or +593982541659."
+msgstr "Si vous avez des questions concernant cette politique de confidentialité ou nos pratiques en matière de confidentialité, veuillez nous contacter à info@nexusmetriks.com ou au +593982541659."
+
+#: templates/privacy_policy.html:94
+msgid "By using our application, you agree to the terms of this privacy policy."
+msgstr "En utilisant notre application, vous acceptez les termes de cette politique de confidentialité."
+
+#: templates/producto.html:53
+msgid "Order created:"
+msgstr "Commande créée :"
+
+#: templates/producto.html:74
+msgid "Payment error:"
+msgstr "Erreur de paiement :"
+
+#: templates/producto.html:75
+msgid "There was an error during the payment process."
+msgstr "Une erreur s'est produite lors du processus de paiement."
+
+#: templates/register.html:6
+msgid "Create Account | NexusMetriks"
+msgstr "Créer un compte | NexusMetriks"
+
+#: templates/register.html:24
+msgid "NEXUS METRICS"
+msgstr "NEXUS METRICS"
+
+#: templates/register.html:28
+msgid "Create Account"
+msgstr "Créer un compte"
+
+#: templates/register.html:31
+msgid "Name"
+msgstr "Nom"
+
+#: templates/register.html:43
+msgid "Confirm Password"
+msgstr "Confirmer le mot de passe"
+
+#: templates/register.html:48
+msgid "Already have an account?"
+msgstr "Vous avez déjà un compte ?"
+
+#: templates/search_console.html:5
+msgid "SEO Consultancy"
+msgstr "Consultation SEO"
+
+#: templates/search_console.html:17
+msgid "Choose the domain and period for SEO analysis"
+msgstr "Choisissez le domaine et la période pour l'analyse SEO"
+
+#: templates/search_console.html:20
+msgid "Enter your domain URL:"
+msgstr "Entrez l'URL de votre domaine :"
+
+#: templates/search_console.html:23
+msgid "Enter the domain URL"
+msgstr "Entrez l'URL du domaine"
+
+#: templates/search_console.html:34
+msgid "Domains associated with your account:"
+msgstr "Domaines associés à votre compte :"
+
+#: templates/thank_you.html:33
+msgid "Hi,"
+msgstr "Bonjour,"
+
+#: templates/thank_you.html:35
+msgid "Thank You for Registering"
+msgstr "Merci pour votre inscription"
+
+#: templates/thank_you.html:38
+msgid "Welcome to our platform,"
+msgstr "Bienvenue sur notre plateforme,"
+
+#: templates/thank_you.html:38
+msgid "You are on the waiting list for the private beta. We will notify you via email at"
+msgstr "Vous êtes sur la liste d'attente pour la bêta privée. Nous vous informerons par e-mail à l'adresse"
+
+#: templates/thank_you.html:53
+msgid "Go back to the beginning while you wait. "
+msgstr "Retournez au début en attendant. "
+
+#: templates/marketing_consultant.html:4
+msgid "VIRTUAL MARKETING CONSULTANT"
+msgstr "CONSULTANT MARKETING VIRTUAL"
+
+#: templates/marketing_consultant.html:5
+msgid "Transform your data into winning decisions"
+msgstr "Transformez vos données en décisions gagnantes"
+
+#: templates/marketing_consultant.html:6
+msgid "Tired of dealing with complex interfaces, scattered data, and high marketing consulting costs? NexusMetriks is the unified platform that transforms marketing data analysis into agile and precise decisions, powered by artificial intelligence."
+msgstr "Fatigué de gérer des interfaces complexes, des données dispersées et des coûts élevés de conseil en marketing ? NexusMetriks est la plateforme unifiée qui transforme l'analyse des données marketing en décisions agiles et précises, propulsées par l'intelligence artificielle."
+
+#: templates/marketing_consultant.html:10
+msgid "Limited beta invitations available"
+msgstr "Invitations beta limitées disponibles"
+
+#: templates/marketing_consultant.html:13
+msgid "Try the App 🚀"
+msgstr "Essayez l'App 🚀"
+
+#: templates/marketing_consultant.html:14
+msgid "Access Beta"
+msgstr "Accéder à la Beta"
+
+#: templates/marketing_consultant.html:22
+msgid "The Problem"
+msgstr "Le Problème"
+
+#: templates/marketing_consultant.html:23
+msgid "Strategic analysis of digital marketing data today is..."
+msgstr "L'analyse stratégique des données marketing digital aujourd'hui est..."
+
+#: templates/marketing_consultant.html:28
+msgid "A headache"
+msgstr "Un casse-tête"
+
+#: templates/marketing_consultant.html:29
+msgid "Complex interfaces and intimidating data volumes that hinder effective analysis."
+msgstr "Des interfaces complexes et des volumes de données intimidants qui entravent l'analyse efficace."
+
+#: templates/marketing_consultant.html:35
+msgid "Expensive"
+msgstr "Coûteux"
+
+#: templates/marketing_consultant.html:36
+msgid "Specialized consulting costs can be prohibitive for many companies."
+msgstr "Les coûts de conseil spécialisé peuvent être prohibitifs pour de nombreuses entreprises."
+
+#: templates/marketing_consultant.html:42
+msgid "Fragmented"
+msgstr "Fragmenté"
+
+#: templates/marketing_consultant.html:43
+msgid "Involves moving between multiple tools, losing time and efficiency."
+msgstr "Implique de naviguer entre plusieurs outils, perdant du temps et de l'efficacité."
+
+#: templates/marketing_consultant.html:52
+msgid "The Solution"
+msgstr "La Solution"
+
+#: templates/marketing_consultant.html:53
+msgid "A virtual marketing consultant with AI-powered tools"
+msgstr "Un consultant marketing virtuel avec des outils propulsés par l'IA"
+
+#: templates/marketing_consultant.html:58
+msgid "Sustainable"
+msgstr "Durable"
+
+#: templates/marketing_consultant.html:59
+msgid "Better data-driven decisions at low cost"
+msgstr "De meilleures décisions basées sur les données à faible coût"
+
+#: templates/marketing_consultant.html:65
+msgid "Accessible"
+msgstr "Accessible"
+
+#: templates/marketing_consultant.html:66
+msgid "Cloud deployment with user-friendly interface"
+msgstr "Déploiement cloud avec interface conviviale"
+
+#: templates/marketing_consultant.html:72
+msgid "Understandable"
+msgstr "Compréhensible"
+
+#: templates/marketing_consultant.html:73
+msgid "Using AI for real-time metrics and data analysis"
+msgstr "Utilisation de l'IA pour les métriques et l'analyse de données en temps réel"
+
+#: templates/marketing_consultant.html:82
+msgid "Differentiators"
+msgstr "Différenciateurs"
+
+#: templates/marketing_consultant.html:83
+msgid "What makes us unique"
+msgstr "Ce qui nous rend uniques"
+
+#: templates/marketing_consultant.html:88
+msgid "1-Click Analysis"
+msgstr "Analyse en 1-clic"
+
+#: templates/marketing_consultant.html:89
+msgid "Results in seconds"
+msgstr "Résultats en secondes"
+
+#: templates/marketing_consultant.html:95
+msgid "MarTech AI Native"
+msgstr "MarTech AI Native"
+
+#: templates/marketing_consultant.html:96
+msgid "AI-powered Analysis Technology"
+msgstr "Technologie d'analyse propulsée par l'IA"
+
+#: templates/marketing_consultant.html:102
+msgid "User-Friendly Design"
+msgstr "Design Convivial"
+
+#: templates/marketing_consultant.html:103
+msgid "Intuitive and easy-to-use interface"
+msgstr "Interface intuitive et facile à utiliser"
+
+#: templates/marketing_consultant.html:109
+msgid "Unified Platform"
+msgstr "Plateforme Unifiée"
+
+#: templates/marketing_consultant.html:110
+msgid "Integration with primary sources"
+msgstr "Intégration avec les sources primaires"
+
+#: templates/marketing_consultant.html:116
+msgid "Simplified Data Science"
+msgstr "Science des Données Simplifiée"
+
+#: templates/marketing_consultant.html:117
+msgid "Marketing data processing"
+msgstr "Traitement des données marketing"
+
+#: templates/marketing_consultant.html:123
+msgid "Comprehensive Solution"
+msgstr "Solution Complète"
+
+#: templates/marketing_consultant.html:124
+msgid "Multiple tools in one"
+msgstr "Plusieurs outils en un"
+
+#: templates/marketing_consultant.html:133
+msgid "Why choose us?"
+msgstr "Pourquoi nous choisir ?"
+
+#: templates/marketing_consultant.html:134
+msgid "Benefits"
+msgstr "Avantages"
+
+#: templates/marketing_consultant.html:139
+msgid "Efficiency and Speed"
+msgstr "Efficacité et Rapidité"
+
+#: templates/marketing_consultant.html:140
+msgid "Make data-driven decisions without wasting time or resources."
+msgstr "Prenez des décisions basées sur les données sans perdre de temps ni de ressources."
+
+#: templates/marketing_consultant.html:146
+msgid "Cost Reduction"
+msgstr "Réduction des Coûts"
+
+#: templates/marketing_consultant.html:147
+msgid "Eliminate dependency on expensive consulting and fragmented tools."
+msgstr "Éliminez la dépendance aux conseils coûteux et aux outils fragmentés."
+
+#: templates/marketing_consultant.html:153
+msgid "Higher Profitability"
+msgstr "Rentabilité Accrue"
+
+#: templates/marketing_consultant.html:154
+msgid "Optimize your digital campaigns, increase conversion, and improve your marketing investment ROI."
+msgstr "Optimisez vos campagnes digitales, augmentez la conversion et améliorez le ROI de votre investissement marketing."
+
+#: templates/marketing_consultant.html:160
+msgid "Clear Path"
+msgstr "Chemin Clair"
+
+#: templates/marketing_consultant.html:161
+msgid "Clear any doubts about the need for a marketing strategy based on reliable and up-to-date data."
+msgstr "Dissipez tout doute sur la nécessité d'une stratégie marketing basée sur des données fiables et à jour."
+
+#: templates/marketing_consultant.html:170
+msgid "LIMITED SPOTS!"
+msgstr "PLACES LIMITÉES !"
+
+#: templates/marketing_consultant.html:171
+msgid "Ready to revolutionize your marketing?"
+msgstr "Prêt à révolutionner votre marketing ?"
+
+#: templates/marketing_consultant.html:172
+msgid "Every second counts. Your competition is already taking action."
+msgstr "Chaque seconde compte. Votre concurrence passe déjà à l'action."
+
+#: templates/marketing_consultant.html:173
+msgid "Join the Exclusive Beta! 🔓"
+msgstr "Rejoignez la Beta Exclusive ! 🔓"
+
+#: templates/marketing_consultant.html:182
+msgid "All rights reserved"
+msgstr "Tous droits réservés"
+
+#: templates/dashboard.html:7
+msgid "Hello"
+msgstr "Bonjour"
+
+#: templates/dashboard.html:7
+msgid "What would you like to do today?"
+msgstr "Que souhaitez-vous faire aujourd'hui ?"

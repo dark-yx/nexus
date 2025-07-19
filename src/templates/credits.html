@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Credits</title>
+</head>
+<body>
+    <h1>Purchase Credits</h1>
+    <div>
+        {% for package in packages %}
+            <form action="/payments/create" method="post">
+                <h2>{{ package.name }}</h2>
+                <p>Price: ${{ package.amount }}</p>
+                <p>Credits: {{ package.credits }}</p>
+                <input type="hidden" name="package_name" value="{{ package.name }}">
+                <input type="hidden" name="amount" value="{{ package.amount }}">
+                <input type="hidden" name="credits" value="{{ package.credits }}">
+                <input type="hidden" name="user_id" value="{{ user_id }}"> <!-- Pass the user ID dynamically -->
+                <button type="submit">Buy Now</button>
+            </form>
+        {% endfor %}
+    </div>
+</body>
+</html>

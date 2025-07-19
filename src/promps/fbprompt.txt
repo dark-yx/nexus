@@ -1,0 +1,12 @@
+Como experto en marketing digital, ofrece un análisis profesional del rendimiento de las campañas durante el período indicado.
+El análisis debe ser detallado y estructurado, abordando cada objetivo de campaña y proporcionando observaciones específicas para cada tipo, pero desglozandolo por cada campaña de forma estrategica y profunda.
+Considera lo siguiente:
+
+1. Para campañas con el objetivo OUTCOME_LEADS:
+   - Analiza el número de leads y el cost_per_lead. En estos casos siempre debes omitir los datos de interacción y mensajes en el analisis de estas campañas.
+
+2. Para campañas con el objetivo OUTCOME_ENGAGEMENT:
+   - Si la campaña hace referencia a WhatsApp, Messenger, Mensajes, etc., analiza el número de mensajes y el cost_per_message. En estos casos omitir los datos de leads e interacción en el analisis de estas campañas.
+   - Si la campaña hace referencia a interacciones, landings, páginas, post, etc., analiza el número de interacciones y el cost_per_interaction. En estos casos omitir los datos de leads y mensajes en el analisis de estas campañas.
+
+Ofrece un análisis detallado para cada una de las campañas siendo detallado y  ofrecer recomendaciones, sugerencias y un resumen estrategico, considerando su objetivo especifico y brindando sugerencias específicas para mejorar el rendimiento en cada caso.

@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}{{ _("NexusMetriks") }}{% endblock %}
+
+{% block customCSS %}
+<style>
+  /* Styles for the Buy Credits page */
+  .plan-card {
+    background: var(--container-bg);
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    width: 100%;
+  }
+  .plan-card:hover {
+    transform: scale(1.02);
+  }
+  .plan-card h2 {
+    color: var(--text-color);
+    margin-bottom: 15px;
+  }
+  .plan-card p {
+    color: var(--text-color);
+    margin-bottom: 10px;
+  }
+  .plan-card .btn {
+    display: inline-block;
+    background-color: var(--btn-primary-bg);
+    color: var(--text-color);
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  .plan-card .btn:hover {
+    background-color: #444444;
+  }
+  
+  .planes-container .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+  .planes-container [class*="col-"] {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 20px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<br><br>
+<div class="container my-4 planes-container">
+  <h1 class="text-center mb-4">{{ _("Choose Your Credits Plan") }}</h1>
+  <div class="row">
+    {% for plan_name, plan in planes.items() %}
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="plan-card">
+          <h2>{{ plan_name }}</h2>
+          <p><strong>{{ _("Credits:") }}</strong> {{ plan.credits }}</p>
+          <p><strong>{{ _("Price:") }}</strong> ${{ plan.amount }}</p>
+          <a href="{{ url_for('producto_detalle', plan_name=plan_name) }}" class="btn">{{ _("Buy Credits") }}</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

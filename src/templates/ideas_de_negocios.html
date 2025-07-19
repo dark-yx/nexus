@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+{% block title %}{{ _("NexusMetriks") }}{% endblock %}
+{% block content %}
+<br><br>
+<h1>{{ _("Business Idea Generator") }}</h1>
+<br>
+<div>
+    <div class="container">
+        <h2>{{ _("Let's Generate Your New Business Idea") }}</h2>
+        {% if business_idea %}
+        <div class="result">
+            <h2>{{ _("Business Suggestions") }}</h2>
+            <div id="summary-content">{{ business_idea }}</div>
+        </div>
+        {% endif %}
+        <form method="POST" action="{{ url_for('ideas_de_negocios') }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div id="input-container">
+                <br>
+                <div class="input-step" data-step="1">
+                    <h3>{{ _("What technical and/or professional skills do you currently have and on which you would like to base your new business?") }}</h3>
+                    <label for="skills">{{ _("Enter only the skills you excel at:") }}</label>
+                    <input type="text" id="skills" name="skills" class="wide-input" placeholder="{{ _('Example: soccer, programming, marketing, sales, etc...') }}" required>
+                    <span id="skills-error" class="error-message" style="display: none; color: red;">{{ _("Please enter your skills.") }}</span>
+                    <button type="button" class="next-button btn btn-primary">{{ _("Process Skills") }}</button>
+                </div>
+                <div class="input-step" data-step="2" style="display: none;">
+                    <h3>{{ _("What specific interests do you have in relation to the market and target audience of this new project?") }}</h3>
+                    <label for="interests">{{ _("Enter the market sector of interest:") }}</label>
+                    <input type="text" id="interests" name="interests" class="wide-input" placeholder="{{ _('e.g., sports industry, products for athletes, etc...') }}" required>
+                    <span id="interests-error" class="error-message" style="display: none; color: red;">{{ _("Please enter your interests.") }}</span>
+                    <button type="button" class="next-button btn btn-primary">{{ _("Process Interests") }}</button>
+                </div>
+                <div class="input-step" data-step="3" style="display: none;">
+                    <h3>{{ _("How much capital do you have available to invest in launching a new business?") }}</h3>
+                    <label for="capital">{{ _("Enter your capital amount (in USD):") }}</label>
+                    <input type="text" id="capital" name="capital" class="wide-input" required pattern="[0-9]+(\.[0-9]{1,2})?" title="{{ _('Enter a decimal number (e.g., 123.45)') }}">
+                    <span id="capital-error" class="error-message" style="display: none; color: red;">{{ _("Please enter a valid decimal number (e.g., 123.45)") }}</span>
+                    <button type="button" class="next-button" id="capital-next-button">{{ _("Process Capital") }}</button>
+                </div>
+                <div class="input-step" data-step="4" style="display: none;">
+                    <h3>{{ _("How are various aspects of the economy performing in your environment, such as growth, inflation, unemployment, or financial stability?") }}</h3>
+                    <label for="economic_scenario">{{ _("Enter your current economic scenario:") }}</label>
+                    <input type="text" id="economic_scenario" name="economic_scenario" class="wide-input" required>
+                    <span id="economic_scenario-error" class="error-message" style="display: none; color: red;">{{ _("Please describe the economic scenario.") }}</span>
+                    <button type="button" class="next-button">{{ _("Process Scenario") }}</button>
+                </div>
+                <div class="input-step" data-step="5" style="display: none;">
+                    <h3>{{ _("How much time are you willing to dedicate to your business idea?") }}</h3>
+                    <label for="dedication">{{ _("Enter your available time commitment:") }}</label>
+                    <input type="text" id="dedication" name="dedication" class="wide-input" required>
+                    <span id="dedication-error" class="error-message" style="display: none; color: red;">{{ _("Please enter the amount of time you can commit.") }}</span>
+                    <button class="btn btn-primary" type="submit" id="generate-ideas-button">{{ _("Generate Idea") }}</button>
+                </div>
+            <br>
+            </div>
+            <div id="loading-message" style="display: none;">
+                <h3>{{ _("Please wait, we are generating your business idea...") }}</h3>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+(function() {
+    const nextButtons = document.querySelectorAll('.next-button');
+    const form = document.getElementById('business-idea-form');
+    const inputSteps = document.querySelectorAll('.input-step');
+    const loadingMessage = document.getElementById('loading-message');
+    let currentStep = 1;
+
+    nextButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            if (currentStep < inputSteps.length) {
+                if (validateStep(currentStep)) {
+                    inputSteps[currentStep - 1].style.display = 'none';
+                    inputSteps[currentStep].style.display = 'block';
+                    currentStep++;
+                }
+            }
+        });
+    });
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const generateIdeasButton = document.getElementById('generate-ideas-button');
+        generateIdeasButton.disabled = true;
+
+        inputSteps[currentStep - 1].style.display = 'none';
+        loadingMessage.style.display = 'block';
+
+        const formData = new FormData(form);
+        fetch('/ideas-de-negocios', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.text())
+        .then(data => {
+            document.open();
+            document.write(data);
+            document.close();
+        })
+        .catch(error => console.error('Error:', error));
+    });
+
+    function validateStep(step) {
+        let isValid = true;
+        switch(step) {
+            case 1:
+                const skillsInput = document.getElementById('skills');
+                const skillsError = document.getElementById('skills-error');
+                if (skillsInput.value.trim() === '') {
+                    skillsError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    skillsError.style.display = 'none';
+                }
+                break;
+            case 2:
+                const interestsInput = document.getElementById('interests');
+                const interestsError = document.getElementById('interests-error');
+                if (interestsInput.value.trim() === '') {
+                    interestsError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    interestsError.style.display = 'none';
+                }
+                break;
+            case 3:
+                const capitalInput = document.getElementById('capital');
+                const capitalError = document.getElementById('capital-error');
+                const capitalValue = capitalInput.value;
+                const capitalPattern = /^[0-9]+(\.[0-9]{1,2})?$/;
+                if (!capitalPattern.test(capitalValue) || capitalValue.trim() === '') {
+                    capitalError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    capitalError.style.display = 'none';
+                }
+                break;
+            case 4:
+                const economicScenarioInput = document.getElementById('economic_scenario');
+                const economicScenarioError = document.getElementById('economic_scenario-error');
+                if (economicScenarioInput.value.trim() === '') {
+                    economicScenarioError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    economicScenarioError.style.display = 'none';
+                }
+                break;
+            case 5:
+                const dedicationInput = document.getElementById('dedication');
+                const dedicationError = document.getElementById('dedication-error');
+                if (dedicationInput.value.trim() === '') {
+                    dedicationError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    dedicationError.style.display = 'none';
+                }
+                break;
+        }
+        return isValid;
+    }
+
+    var summaryContent = document.getElementById('summary-content');
+    if (summaryContent) {
+        summaryContent.innerHTML = marked.parse(summaryContent.textContent);
+    }
+})();
+</script>    
+
+{% endblock %}

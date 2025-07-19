@@ -1,0 +1,14 @@
+
+{
+    "name": "whatsapp-microservice",
+    "version": "1.0.0",
+    "description": "WhatsApp integration for NexusMetriks",
+    "main": "main.js",
+    "scripts": {
+        "start": "node main.js"
+    },
+    "dependencies": {
+        "@adiwajshing/baileys": "^4.0.0",
+        "axios": "^0.21.1"
+    }
+}

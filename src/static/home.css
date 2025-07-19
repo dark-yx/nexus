@@ -1,0 +1,798 @@
+/* ===================== Variables (Dark Mode por defecto) ===================== */
+:root {
+  /* Tipografías */
+  --font-body: Arial, sans-serif;
+  --font-oswald: 'Oswald', sans-serif;
+  --font-beginner: 'Beginner', sans-serif;
+  --font-gijsuy: 'Gijsuypersonal';
+  
+  /* Colores y fondos para modo dark */
+  --bg-body: #24443c;
+  --bg-bodyligth: #0c2c24;
+  --text-color: #bcccd4;
+  --text-color-sidebar: white;
+  --header-bg: #7051f6;
+  --sidebar-bg: #04241c;
+  --sidebar-text: white;
+  --screenmode-bg: #f8f9fa;
+  --screenmode-text: #04241c;
+  --container-bg: #04241c;
+  --footer-bg: #060818;
+  --nav-link-hover-bg: #6ade91;
+  --nav-link-hover-color: #7051f6;
+  --btn-primary-bg: rgb(26, 28, 45);
+  --btn-primary-border: 1px solid rgba(26, 50, 82, 0.669);
+  --bg-cuerpo: #0e203e;
+  --bg-chat-boton: #6ade91;
+  --chat-color: #cdcdcd;
+  --btn-bg: #7051f6;
+  --btn-hover: #6ade91;
+  --sendmss-bg: #060818;
+  --liner-border: rgba(96, 125, 139, 0.54);
+  --primary: #24443c;
+  --primary-dark: #04241c;
+  --secondary: #1c1c1c;
+  --accent: #6ade91;
+  --accent-dark: #7051f6;
+  --light: #f8fafc;
+  --dark: #1e293b;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --whatsapp: #25D366;
+  
+  /* Colores para contenedores y cards */
+  --card-bg: #04241c;
+  --card-border: #1a2c24;
+  --card-hover: #0c2c24;
+  --section-bg: #f8f9fa;
+  --section-bg-alt: #bcccd4;
+  --text-primary: #bcccd4;
+  --text-secondary: #8a9ba3;
+  --border-radius: 12px;
+
+  /* Modo claro */
+  --topbar-bg: #24443c;
+  --topbar-text: #ffffff;
+  --topbar-icon: #ffffff;
+  --topbar-hover: #0c2c24;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #2d3748;
+  --text-secondary: #4a5568;
+  --accent-color: #10b981;
+  --accent-hover: #bcccd4;
+  --border-color: #e2e8f0;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --header-bg: #ffffff;
+  --footer-bg: #24443c;
+  --footer-text: #ffffff;
+  --cta-bg: #10b981;
+  --cta-text: #ffffff;
+  --benefits-bg: #10b981;
+  --benefits-text: #ffffff;
+  --limited-offer-bg: rgba(16, 185, 129, 0.1);
+  --limited-offer-text: #10b981;
+
+  /* Colores principales */
+  --primary-dark: #04241c;
+  --primary-light: #0c2c24;
+  --accent-green: #6ade91;
+  --accent-purple: #7051f6;
+  
+  /* Colores de fondo */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #e9ecef;
+  
+  /* Colores de texto */
+  --text-primary: #2d3748;
+  --text-secondary: #4a5568;
+  --text-light: #ffffff;
+  
+  /* Efectos */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-topbar: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+  /* Bordes */
+  --border-radius-sm: 0.375rem;
+  --border-radius-md: 0.5rem;
+  --border-radius-lg: 1rem;
+  --border-radius-full: 9999px;
+}
+
+/* ===================== Light Mode ===================== */
+[data-theme="light"] {
+  --bg-body: #f2f2f2;
+  --bg-bodyligth: white;
+  --text-color: #212121;
+  --header-bg: #f8f9fa;
+  --sidebar-bg: #f8f9fa;
+  --sidebar-text: #212121;
+  --screenmode-bg: #04241c;
+  --screenmode-text: #f8f9fa;
+  --container-bg: #f8f9fa;
+  --footer-bg: #f8f9fa;
+  --nav-link-hover-bg: #6ade91;
+  --nav-link-hover-color: #7051f6;
+  --btn-primary-bg: #ffffff;
+  --btn-primary-border: 1px solid #ddd;
+  --bg-cuerpo: #cdcdcd;
+  --bg-chat-boton: #6ade91;
+  --chat-color: #212121;
+  --sendmss-bg: rgba(26, 50, 82, 0.669);
+  --liner-border: #d0d0d0;
+  
+  /* Colores para contenedores y cards en modo claro */
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
+  --card-hover: #f8f9fa;
+  --section-bg: #f8f9fa;
+  --section-bg-alt: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a5568;
+}
+
+/* Estilos base */
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-primary);
+  margin: 0;
+  color: var(--text-primary);
+  padding-top: 0 !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  line-height: 1.6;
+}
+
+/* Contenedor principal */
+.container-landing {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center!important;
+}
+
+/* Cards y contenedores */
+.bg-white {
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--card-border);
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.bg-white:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow);
+}
+
+/* Secciones */
+section {
+  margin-bottom: 4rem;
+  border-radius: 1rem;
+  background-color: var(--bg-secondary);
+  padding: 2rem;
+}
+
+.features {
+  background: var(--section-bg) !important;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+}
+
+.solution {
+  background: #6ade91!important;
+  color: #0c2c24!important;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+}
+
+.benefits {
+  background: #0c2c24!important;
+  color: #6ade91!important;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+}
+
+.cta {
+  background: var(--cta-bg);
+  color: var(--cta-text);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+}
+
+/* Textos */
+.text-blue-900 {
+  color: var(--text-primary) !important;
+}
+
+.text-gray-600 {
+  color: var(--text-secondary) !important;
+}
+
+/* Gradientes */
+.bg-gradient-to-br {
+  background: linear-gradient(135deg, var(--section-bg), var(--section-bg-alt)) !important;
+}
+
+.bg-gradient-to-r {
+  background: linear-gradient(90deg, var(--section-bg), var(--section-bg-alt)) !important;
+}
+
+/* Contenedores con fondo semitransparente */
+.bg-white\/10 {
+  background-color: rgba(var(--card-bg), 0.1) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius);
+}
+
+/* Footer */
+footer {
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+  padding: 3rem 0;
+}
+
+footer .text-gray-400 {
+  color: var(--text-secondary) !important;
+}
+
+footer .text-accent {
+  color: var(--accent) !important;
+}
+
+/* Resto de los estilos existentes... */
+
+/* ===================== Importación de Fuentes ===================== */
+
+@font-face {
+  font-family: 'Gijsuypersonal';
+  src: url('/static/fonts/Gijsuypersonal.otf') format('otf');
+}
+@font-face {
+  font-family: 'Oswald';
+  src: url('/static/fonts/Oswald.ttf') format('ttf');
+}
+@font-face {
+  font-family: 'Beginner';
+  src: url('/static/fonts/Beginner.ttf') format('ttf');
+}
+
+/* Header principal */
+.header {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6rem 2rem;
+  overflow: hidden;
+}
+
+.header-content {
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+}
+
+.header h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.header h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+.header-parrafo {
+  font-size: 1.25rem;
+  color: var(--text-light);
+  opacity: 0.9;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+/* Oferta limitada */
+.limited-offer {
+  display: inline-block;
+  background: rgba(106, 222, 145, 0.1);
+  color: #6ade91;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius-full);
+  font-weight: 600;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(8px);
+  border: 1px solid #6ade91;
+  transition: none;
+  cursor: default;
+}
+
+.limited-offer:hover {
+  transform: none;
+  box-shadow: none;
+  background: rgba(106, 222, 145, 0.1);
+  color: #6ade91;
+}
+
+/* Botones */
+.cta-button {
+  display: inline-block;
+  background: white;
+  color: #6ade91;
+  padding: 1rem 2rem;
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  min-width: 200px;
+  text-align: center;
+}
+
+.cta-button:hover {
+  background: #6ade91;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  color:white;
+}
+
+.cta-button.outline {
+  background: transparent;
+  border: 1px solid #6ade91;
+  color: #6ade91;
+  min-width: 200px;
+  text-align: center;
+}
+
+.cta-button.outline:hover {
+  background: #6ade91;
+  color: var(--text-light);
+}
+
+/* Secciones */
+section {
+  padding: 5rem 0;
+}
+
+section h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+section p {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 3rem;
+}
+
+/* Cards */
+.bg-white {
+  background: var(--bg-primary);
+  border-radius: var(--border-radius-lg);
+  padding: 2rem;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.bg-white:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Sección de beneficios */
+.benefits {
+  background: var(--primary-dark);
+  color: var(--text-light);
+}
+
+.benefits h2,
+.benefits p {
+  color: var(--text-light);
+}
+
+.solution .bg-white\/10 {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  text-align: center!important;
+  border: 1px solid #04241c;
+  color: #04241c!important;
+}
+
+.benefits .bg-white\/10 {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  text-align: center!important;
+  border: 1px solid #6ade91;
+  color: #6ade91!important;
+}
+
+/* CTA */
+.cta {
+  background: var(--accent-purple);
+  color: var(--text-light);
+  text-align: center;
+  padding: 5rem 0;
+}
+
+.cta h2 {
+  color: var(--text-light);
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.cta p {
+  color: var(--text-light);
+  opacity: 0.9;
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+/* Footer */
+footer {
+  background: var(--primary-dark);
+  color: var(--text-light);
+  padding: 3rem 0;
+  text-align: center;
+}
+
+footer .text-accent {
+  color: var(--accent-green);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2.5rem;
+  }
+  
+  .header h2 {
+    font-size: 2rem;
+  }
+  
+  .header-parrafo {
+    font-size: 1.1rem;
+  }
+  
+  section {
+    padding: 3rem 0;
+  }
+  
+  section h2 {
+    font-size: 2rem;
+  }
+  
+  .cta h2 {
+    font-size: 2rem;
+  }
+  
+  .cta-button {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-out;
+}
+
+/* Scroll suave */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Mejoras de accesibilidad */
+.focus\:outline-none:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Mejoras de rendimiento */
+.will-change-transform {
+  will-change: transform;
+}
+
+/* Estilos para el fondo animado */
+.interactive-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Estilos específicos para la página de marketing */
+.marketing-page {
+  background: var(--light);
+  color: var(--dark);
+}
+
+.marketing-page .header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+}
+
+.marketing-page .cta-button {
+  background-color: var(--accent);
+  color: #6ade91;
+}
+
+.marketing-page .cta-button:hover {
+  background-color: var(--accent-dark);
+}
+
+.marketing-page .limited-offer {
+  background-color: rgba(106, 222, 145, 0.1);
+  color: var(--accent);
+}
+
+/* Estilos para el menú de idiomas en la página de marketing */
+.marketing-page .dropdown.lang {
+  margin-left: 1rem;
+}
+
+.marketing-page .flag-icon-dropdown {
+  border: 2px solid var(--accent);
+}
+
+/* Estilos para el botón de cambio de tema en la página de marketing */
+.marketing-page .theme-toggle button {
+  background-color: transparent;
+  border: 2px solid var(--accent);
+}
+
+.marketing-page .theme-toggle button:hover {
+  background-color: var(--accent);
+}
+
+/* Modo oscuro específico para la página de marketing */
+[data-theme="dark"] .marketing-page {
+  background: var(--dark);
+  color: var(--light);
+}
+
+[data-theme="dark"] .marketing-page .header {
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+}
+
+[data-theme="dark"] .marketing-page .cta-button {
+  background-color: var(--accent-dark);
+}
+
+[data-theme="dark"] .marketing-page .cta-button:hover {
+  background-color: var(--accent);
+}
+
+[data-theme="dark"] .marketing-page .limited-offer {
+  background-color: rgba(112, 81, 246, 0.1);
+  color: var(--accent-dark);
+}
+
+/* Barra superior */
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--primary-dark);
+  z-index: 1000;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  box-shadow: var(--shadow-topbar);
+}
+
+.top-bar-content {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+.logo img {
+  height: 35px;
+  width: auto;
+}
+
+/* Controles de la barra superior */
+.top-bar-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-right: 1rem;
+}
+
+/* Dropdown de idioma */
+.dropdown.lang {
+  margin-left: 0;
+}
+
+#languageDropdown {
+  background: transparent;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#languageDropdown:hover {
+  background-color: var(--primary-light);
+}
+
+.flag-icon-dropdown {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.dropdown-menu {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 0.5rem;
+  min-width: 150px;
+}
+
+.dropdown-item {
+  color: var(--text-primary);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-sm);
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dropdown-item:hover {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.flag-width {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header {
+    height: auto;
+    min-height: 100vh;
+    padding: 80px 1rem 2rem 1rem;
+  }
+
+  .header-content {
+    padding: 0 1rem;
+  }
+
+  .header-content h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .header-content h2 {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .header-content p {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .cta-button {
+    width: 100%;
+    max-width: 280px;
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+    margin: 0;
+  }
+
+  .limited-offer {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .top-bar {
+    padding: 0 0.5rem;
+  }
+
+  .logo {
+    margin-left: 0.5rem;
+  }
+
+  .top-bar-controls {
+    margin-right: 0.5rem;
+  }
+
+  .logo img {
+    height: 30px;
+  }
+
+  #languageDropdown {
+    width: 35px;
+    height: 35px;
+  }
+
+  .flag-icon-dropdown {
+    width: 22px;
+    height: 22px;
+  }
+
+  .container-landing {
+    padding: 1rem;
+  }
+  
+  section {
+    padding: 1.5rem;
+  }
+  
+  .card {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Hero buttons container */
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}

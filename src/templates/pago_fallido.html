@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}{{ _("NexusMetriks") }}{% endblock %}
+
+{% block customCSS %}
+<style>
+  /* Main container for the details */
+  .detalle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background: var(--container-bg);
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: auto;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<br><br>
+<h1 class="text-center">{{ _("We're sorry, your credit purchase has failed.") }}</h1>
+<br>
+<div class="container">
+  <div class="detalle-container">
+    <h1>{{ _("We're sorry, your credit purchase has failed.") }}</h1>
+    <p>{{ _("Please try again or contact us if the problem persists.") }}</p>
+    <a href="/" class="btn">{{ _("Return to Home") }}</a>
+  </div>
+</div>
+{% endblock %}

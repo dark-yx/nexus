@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}{{ _("Google Ads Analysis") }}{% endblock %}
+{% block content %}
+<br><br>
+<h1>{{ _("Google Ads Analysis") }}</h1>
+<br>
+<div class="container">
+    <div>
+        <div id="summary-content">{{ summary_content }}</div>
+    </div>
+    <h2>{{ _("Analyze the performance of your Google Ads campaigns") }}</h2>    
+    <div class="form-sc">
+        <h3>{{ _("Enter your campaign details:") }}</h3>
+        <form method="POST" action="{{ url_for('google_ads') }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class="form-group">
+                <label for="customer_id">{{ _("Customer ID:") }}</label>
+                <select class="form-control" name="customer_id" id="customer_id">
+                    {% for id in customer_ids %}
+                        <option value="{{ id }}">{{ id }}</option>
+                    {% endfor %}
+                </select>
+                <label for="start_date">{{ _("Start Date:") }}</label>
+                <input type="date" class="form-control" id="start_date" name="start_date">
+                <label for="end_date">{{ _("End Date:") }}</label>
+                <input type="date" class="form-control" id="end_date" name="end_date">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">{{ _("Submit") }}</button>
+        </form>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var summaryContent = document.getElementById('summary-content');
+    if (summaryContent) {
+        summaryContent.innerHTML = marked.parse(summaryContent.textContent);
+    }
+});
+</script>
+{% endblock %}

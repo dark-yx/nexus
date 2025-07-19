@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% block title %}{{ _("NexusMetriks") }}{% endblock %}
+{% block content %}
+<br><br>
+<h1>{{ _("SEO Consultancy") }}</h1>
+<br>
+<div class="container">
+    <br>
+    {% if line_chart_html %}
+    <div class="panel-grafico">
+        <!-- Embed the line chart -->
+        <div class="grafico-lt-seo">{{ line_chart_html | safe }}</div>
+    </div>
+
+    <div>
+        <div id="summary-content">{{ summary_content | safe }}</div>
+    </div>
+
+    {% if top_keywords_html %}
+    <div class="mt-4">
+        <h3>{{ _("Top Keywords") }}</h3>
+        <div class="table-responsive">
+            {{ top_keywords_html | safe }}
+        </div>
+    </div>
+    {% endif %}
+
+    {% if top_pages_html %}
+    <div class="mt-4">
+        <h3>{{ _("Top Pages") }}</h3>
+        <div class="table-responsive">
+            {{ top_pages_html | safe }}
+        </div>
+    </div>
+    {% endif %}
+    {% endif %}
+
+    <h2>{{ _("Choose the domain and period for SEO analysis") }}</h2>
+    <div class="row">
+        <div class="col-md-6 form-sc">
+            <h3>{{ _("Enter your domain URL:") }}</h3>
+            <form method="POST" action="{{ url_for('search_console') }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="domain_url" id="domain_url" placeholder="{{ _('Enter the domain URL') }}">
+                    <label for="start_date">{{ _("Start Date:") }}</label>
+                    <input type="date" class="form-control" id="start_date" name="start_date">
+                    <label for="end_date">{{ _("End Date:") }}</label>
+                    <input type="date" class="form-control" id="end_date" name="end_date">
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary">{{ _("Analyze") }}</button>
+            </form>            
+        </div>
+        <div class="col-md-6">
+            <h3>{{ _("Domains associated with your account:") }}</h3>
+            <!-- Render each site as a button -->
+            <div class="botons-domains" id="domain-buttons">
+                {% for site in site_list %}
+                    <button type="button" class="btn btn-secondary domain-btn">{{ site['siteUrl'] }}</button>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {% if previous_analyses %}
+    <div class="mt-5">
+        <h3>{{ _("Previous Analyses") }}</h3>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>{{ _("Site URL") }}</th>
+                        <th>{{ _("Date Range") }}</th>
+                        <th>{{ _("Created At") }}</th>
+                        <th>{{ _("Total Clicks") }}</th>
+                        <th>{{ _("Total Impressions") }}</th>
+                        <th>{{ _("Average CTR") }}</th>
+                        <th>{{ _("Average Position") }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for analysis in previous_analyses %}
+                    <tr>
+                        <td>{{ analysis.site_url }}</td>
+                        <td>{{ analysis.start_date }} - {{ analysis.end_date }}</td>
+                        <td>{{ analysis.created_at }}</td>
+                        <td>{{ analysis.metrics.total_clicks }}</td>
+                        <td>{{ analysis.metrics.total_impressions }}</td>
+                        <td>{{ "%.2f"|format(analysis.metrics.average_ctr) }}%</td>
+                        <td>{{ "%.2f"|format(analysis.metrics.average_position) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
+
+    <div id="loading-message" style="display: none;">
+        <h2>{{ _("Please wait, we are analyzing the URL...") }}</h2>
+    </div>    
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('domain-form');
+    const loadingMessage = document.getElementById('loading-message');
+    const analysisResult = document.getElementById('analysis-result');
+    
+    // Si existe un resultado de análisis (por ejemplo, tras un submit previo), se muestra; de lo contrario, se muestra el formulario.
+    if (analysisResult && analysisResult.textContent.trim() !== "") {
+        loadingMessage.style.display = 'none';
+        analysisResult.style.display = 'block';
+    } else {
+        // Mostrar el formulario y asegurarse de que el mensaje de carga esté oculto
+        loadingMessage.style.display = 'none';
+        form.style.display = 'block';
+    }
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Añadir evento de click a cada botón de dominio
+    document.querySelectorAll('.domain-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            var domainUrl = this.textContent.trim();
+            document.getElementById('domain_url').value = domainUrl;
+        });
+    });
+
+    // Convertir contenido Markdown a HTML
+    var summaryContent = document.getElementById('summary-content');
+    if (summaryContent) {
+        summaryContent.innerHTML = marked.parse(summaryContent.textContent);
+    }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Análisis</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f8f9fa; }
+        .history-container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        h2 { text-align: center; }
+        .entry { border-bottom: 1px solid #ddd; padding: 15px; cursor: pointer; transition: background 0.3s; }
+        .entry:hover { background: #f1f1f1; }
+        .entry h3 { margin: 0; font-size: 16px; font-weight: bold; }
+        .entry-content { display: none; margin-top: 10px; padding: 10px; background: #eef; border-radius: 5px; }
+        .loading { text-align: center; font-style: italic; color: #777; }
+        .error { text-align: center; color: red; }
+    </style>
+</head>
+<body>
+    <div class="history-container">
+        <h2>Historial de Análisis</h2>
+        <div id="history-list" class="loading">Cargando historial...</div>
+    </div>
+
+    <script>
+        function loadHistory() {
+            $.get('/api/history', function(data) {
+                console.log("Datos recibidos:", data); // DEBUG
+
+                let historyHtml = '';
+                if (data.length === 0) {
+                    historyHtml = '<p class="error">No hay análisis previos.</p>';
+                } else {
+                    data.forEach(entry => {
+                        historyHtml += `
+                            <div class="entry" onclick="toggleEntry(${entry.id})">
+                                <h3>${entry.type} - ${new Date(entry.created_at).toLocaleString()}</h3>
+                                <div class="entry-content" id="content-${entry.id}"></div>
+                            </div>
+                        `;
+                    });
+                }
+                $('#history-list').html(historyHtml);
+            }).fail(function() {
+                $('#history-list').html('<p class="error">Error al cargar el historial. Intenta nuevamente.</p>');
+            });
+        }
+
+        function toggleEntry(id) {
+            let contentDiv = $(`#content-${id}`);
+            if (contentDiv.is(':empty')) {
+                $.get(`/api/history/${id}`, function(data) {
+                    if (data.summary) {
+                        contentDiv.html(marked.parse(data.summary)).slideDown();
+                    } else {
+                        contentDiv.html('<p class="error">No se pudo cargar el análisis.</p>').slideDown();
+                    }
+                }).fail(function() {
+                    contentDiv.html('<p class="error">Error al cargar el análisis.</p>').slideDown();
+                });
+            } else {
+                contentDiv.slideToggle();
+            }
+        }
+
+        $(document).ready(loadHistory);
+    </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block title %}{{ _("NexusMetriks") }}{% endblock %}
+{% block content %}
+
+<br><br>
+<h1>{{ _("Strategic Website Analysis") }}</h1>
+<br>
+<div class="container">
+    <div id="analysis-result" style="display: none;">
+        <h2>{{ _("Analysis Result") }}</h2>
+        <div id="resumen-scrapping">{{ analisis_web }}</div>
+
+        {% if not scraping_result.empty %}
+            <h2>{{ _("Scraping Result:") }}</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        {% for column in scraping_result.columns %}
+                        <th>{{ column }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for index, row in scraping_result.iterrows() %}
+                    <tr>
+                        {% for value in row %}
+                        <td>{{ value | safe }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>{{ _("No scraping data available.") }}</p>
+        {% endif %}
+        <br>
+        <button onclick="enviarCorreoGmail('{{ _('Web Analysis Result') }}', '{{ analisis_web | urlencode }}')">{{ _("Send with Gmail") }}</button>
+        <button onclick="enviarCorreoOutlook('{{ _('Web Analysis Result') }}', '{{ analisis_web | urlencode }}')">{{ _("Send with Outlook") }}</button>
+        <br><br>
+    </div>
+
+    <h2 id="analysis-title">{{ _("Perform a Web Page Analysis") }}</h2>
+    <br>
+    <form method="POST" action="{{ url_for('analisis_web') }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <div class="form-group">
+            <input type="text" id="url" name="url" class="form-control" placeholder="{{ _('Enter URL') }}" required>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">{{ _("Analyze Page") }}</button>
+        </div>
+    </form>
+    <div id="loading-message" style="display: none;">
+        <h2>{{ _("Please wait, we are analyzing the URL...") }}</h2>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('analisis-web-form');
+        const loadingMessage = document.getElementById('loading-message');
+        const analysisTitle = document.getElementById('analysis-title');
+        const analysisResult = document.getElementById('analysis-result');
+        const resumenScrapping = document.getElementById('resumen-scrapping');
+
+        form.addEventListener('submit', function(event) {
+            const urlInput = document.getElementById('url').value;
+            if (!urlInput.startsWith('http://') && !urlInput.startsWith('https://')) {
+                alert("{{ _('Please enter a full URL starting with http:// or https://') }}");
+                event.preventDefault();
+                return;
+            }
+
+            analysisTitle.style.display = 'none';
+            form.style.display = 'none';
+            loadingMessage.style.display = 'block';
+        });
+
+        if (resumenScrapping && resumenScrapping.textContent.trim() !== '') {
+            loadingMessage.style.display = 'none';
+            analysisResult.style.display = 'block';
+        }
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var resumenScrapping = document.getElementById('resumen-scrapping');
+        if (resumenScrapping) {
+            resumenScrapping.innerHTML = marked.parse(resumenScrapping.textContent);
+        }
+    });
+</script>
+
+<script>
+    function enviarCorreoGmail(subject, body) {
+        window.open(`https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su=${subject}&body=${body}`);
+    }
+
+    function enviarCorreoOutlook(subject, body) {
+        window.open(`https://outlook.office.com/mail/deeplink/compose?subject=${subject}&body=${body}`);
+    }
+</script>
+
+{% endblock %}

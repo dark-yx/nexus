@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis de YouTube</title>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <h1>Análisis de YouTube</h1>
+
+    <form id="search-form">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <input type="text" id="query" name="query" placeholder="Ingrese un nicho o palabra clave">
+        <button type="submit">Buscar</button>
+    </form>
+
+    <p id="loading" style="display: none; color: red;">🔄 Buscando videos, por favor espere...</p>
+
+    <h2>Resultados</h2>
+    <div id="results"></div>
+
+    <button id="analyzeButton" style="display: none;">Generar Análisis</button>
+
+    <h2>Análisis y Recomendaciones</h2>
+    <div id="analysis"></div>
+
+    <h2>Gráficos de Datos</h2>
+    <div id="chart"></div>
+
+    <script>
+        let videoData = [];
+
+        $("#searchForm").on("submit", function(event) {
+            event.preventDefault();
+            let formData = $(this).serialize();
+
+            $("#searchForm").hide();
+            $("#loading").show();
+
+            $.ajax({
+                type: "POST",
+                url: "/youtube",
+                data: formData,
+                success: function(response) {
+                    $("#loading").hide();
+                    $("#searchForm").show();
+                    $("#analyzeButton").show();
+
+                    videoData = response.videos;
+                    let html = "<table border='1'><tr><th>Video</th><th>Vistas</th><th>Likes</th><th>Comentarios</th></tr>";
+                    let views = [], likes = [], comments = [], titles = [];
+
+                    videoData.forEach(video => {
+                        html += `<tr>
+                            <td><img src="${video.thumbnails}" width="120"><br>
+                                <a href="${video.video_url}" target="_blank">${video.title}</a>
+                            </td>
+                            <td>${video.views}</td>
+                            <td>${video.likes}</td>
+                            <td>${video.comments}</td>
+                        </tr>`;
+
+                        titles.push(video.title);
+                        views.push(video.views);
+                        likes.push(video.likes);
+                        comments.push(video.comments);
+                    });
+
+                    html += "</table>";
+                    $("#results").html(html);
+
+                    var options = {
+                        series: [
+                            { name: 'Vistas', data: views },
+                            { name: 'Likes', data: likes },
+                            { name: 'Comentarios', data: comments }
+                        ],
+                        chart: { type: 'bar', height: 350 },
+                        xaxis: { categories: titles }
+                    };
+
+                    $("#chart").html("");
+                    new ApexCharts(document.querySelector("#chart"), options).render();
+                }
+            });
+        });
+
+        $("#analyzeButton").on("click", function() {
+            $.post("/youtube/analyze", JSON.stringify({ videos: videoData }), function(response) {
+                $("#analysis").html("<p>" + response.analysis + "</p>");
+            }, "json");
+        });
+    </script>
+
+</body>
+</html>

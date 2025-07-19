@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+{% block title %}{{ _("NexusMetriks") }}{% endblock %}
+
+{% block content %}
+<br><br>
+<div class="text-center">
+  <h1>{{ _("Hello") }}, {{ given_name }}! {{ _("What would you like to do today?") }}</h1>
+</div>
+<div class="container-index">
+  <div class="row">
+    <!-- Business Ideas -->
+    <div class="col-12 col-md-4 col-lg-3 mb-4">
+      <a href="{{ url_for('ideas_de_negocios') }}" class="text-decoration-none text-dark">
+        <div class="card h-100">
+          <div class="card-body text-center grid-tool">
+            <i data-feather="sun" class="mb-3" style="width:50px; height:50px;"></i>
+            <h5 class="card-title">{{ _("Business Ideas") }}</h5>
+            <p class="card-text">{{ _("Find innovative ideas for your new business.") }}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!-- Marketing Strategies -->
+    <div class="col-12 col-md-4 col-lg-3 mb-4">
+      <a href="{{ url_for('estrategias_de_marketing') }}" class="text-decoration-none text-dark">
+        <div class="card h-100">
+          <div class="card-body text-center grid-tool">
+            <i data-feather="layers" class="mb-3" style="width:50px; height:50px;"></i>
+            <h5 class="card-title">{{ _("Marketing Strategies") }}</h5>
+            <p class="card-text">{{ _("Build effective marketing strategies.") }}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!-- Metrics Calculator -->
+    <div class="col-12 col-md-4 col-lg-3 mb-4">
+      <a href="{{ url_for('calculadora') }}" class="text-decoration-none text-dark">
+        <div class="card h-100">
+          <div class="card-body text-center grid-tool">
+            <i data-feather="hash" class="mb-3" style="width:50px; height:50px;"></i>
+            <h5 class="card-title">{{ _("Metrics Calculator") }}</h5>
+            <p class="card-text">{{ _("Easily calculate and understand your KPIs.") }}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!-- Funnel Analysis -->
+    <div class="col-12 col-md-4 col-lg-3 mb-4">
+      <a href="{{ url_for('funnel_analysis') }}" class="text-decoration-none text-dark">
+        <div class="card h-100">
+          <div class="card-body text-center grid-tool">
+            <i data-feather="filter" class="mb-3" style="width:50px; height:50px;"></i>
+            <h5 class="card-title">{{ _("Funnel Analysis") }}</h5>
+            <p class="card-text">{{ _("Discover optimization opportunities for your conversion funnel.") }}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!-- Website Analysis -->
+    <div class="col-12 col-md-4 col-lg-3 mb-4">
+      <a href="{{ url_for('analisis_web') }}" class="text-decoration-none text-dark">
+        <div class="card h-100">
+          <div class="card-body text-center grid-tool">
+            <i data-feather="monitor" class="mb-3" style="width:50px; height:50px;"></i>
+            <h5 class="card-title">{{ _("Website Analysis") }}</h5>
+            <p class="card-text">{{ _("Insights to improve your website performance.") }}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!-- PageSpeed Insights -->
+    <div class="col-12 col-md-4 col-lg-3 mb-4">
+      <a href="{{ url_for('pagespeed_route') }}" class="text-decoration-none text-dark">
+        <div class="card h-100">
+          <div class="card-body text-center grid-tool">
+            <i data-feather="zap" class="mb-3" style="width:50px; height:50px;"></i>
+            <h5 class="card-title">{{ _("PageSpeed Insights") }}</h5>
+            <p class="card-text">{{ _("Analyze performance and optimize your website load speed.") }}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!-- SEO Performance Analysis -->
+    <div class="col-12 col-md-4 col-lg-3 mb-4">
+      <a href="{{ url_for('search_console') }}" class="text-decoration-none text-dark">
+        <div class="card h-100">
+          <div class="card-body text-center grid-tool">
+            <i data-feather="search" class="mb-3" style="width:50px; height:50px;"></i>
+            <h5 class="card-title">{{ _("SEO Performance Analysis") }}</h5>
+            <p class="card-text">{{ _("Improve your search engine rankings.") }}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!-- Google Ads Analysis -->
+     <!--
+    <div class="col-12 col-md-4 col-lg-3 mb-4">
+      <a href="{{ url_for('google_ads') }}" class="text-decoration-none text-dark">
+        <div class="card h-100">
+          <div class="card-body text-center grid-tool">
+            <i data-feather="trending-up" class="mb-3" style="width:50px; height:50px;"></i>
+            <h5 class="card-title">{{ _("Google Ads Analysis") }}</h5>
+            <p class="card-text">{{ _("Analyze and optimize your ad campaigns.") }}</p>
+          </div>
+        </div>
+      </a>
+    </div>-->
+    <!-- Meta Ads Analysis -->
+    <div class="col-12 col-md-4 col-lg-3 mb-4">
+      <a href="{{ url_for('meta_ads') }}" class="text-decoration-none text-dark">
+        <div class="card h-100">
+          <div class="card-body text-center grid-tool">
+            <i data-feather="bar-chart-2" class="mb-3" style="width:50px; height:50px;"></i>
+            <h5 class="card-title">{{ _("Meta Ads Analysis") }}</h5>
+            <p class="card-text">{{ _("Evaluate performance on Meta platforms.") }}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!-- Traffic Analysis -->
+    <div class="col-12 col-md-4 col-lg-3 mb-4">
+      <a href="{{ url_for('google_analytics') }}" class="text-decoration-none text-dark">
+        <div class="card h-100">
+          <div class="card-body text-center grid-tool">
+            <i data-feather="activity" class="mb-3" style="width:50px; height:50px;"></i>
+            <h5 class="card-title">{{ _("Traffic Analysis") }}</h5>
+            <p class="card-text">{{ _("Monitor and analyze web traffic trends.") }}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!-- CRM Analysis -->
+     <!--
+    <div class="col-12 col-md-4 col-lg-3 mb-4">
+      <a href="{{ url_for('hubspot_analysis') }}" class="text-decoration-none text-dark">
+        <div class="card h-100">
+          <div class="card-body text-center grid-tool">
+            <i data-feather="users" class="mb-3" style="width:50px; height:50px;"></i>
+            <h5 class="card-title">{{ _("CRM Analysis") }}</h5>
+            <p class="card-text">{{ _("Manage and analyze your customer data.") }}</p>
+          </div>
+        </div>
+      </a>
+    </div>-->
+    <!-- Marketing News -->
+    <div class="col-12 col-md-4 col-lg-3 mb-4">
+      <a href="{{ url_for('news') }}" class="text-decoration-none text-dark">
+        <div class="card h-100">
+          <div class="card-body text-center grid-tool">
+            <i data-feather="rss" class="mb-3" style="width:50px; height:50px;"></i>
+            <h5 class="card-title">{{ _("Marketing News") }}</h5>
+            <p class="card-text">{{ _("Stay updated with the latest marketing news.") }}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

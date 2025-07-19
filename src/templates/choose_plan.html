@@ -1,0 +1,17 @@
+<!-- templates/choose_plan.html -->
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Choose Plan</title>
+</head>
+<body>
+    <h1>Choose Your Plan</h1>
+    <form method="post">
+        {% for plan, details in plans.items() %}
+            <input type="radio" id="{{ plan }}" name="plan" value="{{ plan }}">
+            <label for="{{ plan }}">{{ plan }} - ${{ details.price }}</label><br>
+        {% endfor %}
+        <button type="submit">Subscribe</button>
+    </form>
+</body>
+</html>

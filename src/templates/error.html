@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}{{ _("Error | Nexus Metriks") }}{% endblock %}
+{% block content %}
+<br><br>
+<div class="chat-container">
+  <div class="error-container">
+    <h1>{{ _("Oops! Something went wrong") }}</h1>
+    <p id="dynamic-text"></p>
+    <p>{{ _("We are constantly improving our platform.") }}</p>
+    <a href="/" class="btn">{{ _("Return to Home Page") }}</a>
+  </div>
+  <script>
+    const errorMessage = `{{ _("We apologize for the inconvenience. We are working on a technical issue with our platform. Please try again later.") }}`;
+    let index = 0;
+    function typeWriter() {
+        if (index < errorMessage.length) {
+            document.getElementById("dynamic-text").innerHTML += errorMessage.charAt(index);
+            index++;
+            setTimeout(typeWriter, 50);
+        }
+    }
+    window.onload = typeWriter;
+  </script>
+</div>
+{% endblock %}

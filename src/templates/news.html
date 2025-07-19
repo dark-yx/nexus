@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %} News | OnePUM {% endblock %}
+{% block content %}
+<br><br>
+<h1>Noticias de Marketing Digital</h1>
+<br>
+<div class="chat-container">
+    <br>
+    <h2>Resumen de Noticias de Marketing</h2>
+    <p>{{ summary }}</p>
+    <br>
+    <h2>Artículos destacados</h2>
+    <ul class="nav nav-tabs" id="newsTabs" role="tablist">
+        {% for article in articles %}
+            <li class="news-item">
+                <a class="nav-link active" href="{{ article.url }}" target="_blank">{{ article.title }}</a>
+                <br>
+                <p>{{ article.description }}</p>
+                <p><small>Fuente: {{ article.source.name }}</small></p>
+                <p><small>Publicado: {{ article.publishedAt }}</small></p>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var resumenContent = document.getElementById('summary');
+        if (resumenContent) {
+            resumenContent.innerHTML = marked.parse(resumenContent.innerHTML);
+        }
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,283 @@
+{% extends "base.html" %}
+{% block title %}{{ _("NexusMetriks") }}{% endblock %}
+
+{% block css %}
+<style>
+    .analysis-content h1, 
+    .analysis-content h2, 
+    .analysis-content h3 {
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+        color: #2c3e50;
+    }
+    
+    .analysis-content h1 {
+        font-size: 1.8rem;
+        border-bottom: 2px solid #eaecef;
+        padding-bottom: 0.5rem;
+    }
+    
+    .analysis-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .analysis-content h3 {
+        font-size: 1.25rem;
+    }
+    
+    .analysis-content p {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+    }
+    
+    .analysis-content ul, 
+    .analysis-content ol {
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+    }
+    
+    .analysis-content li {
+        margin-bottom: 0.5rem;
+    }
+    
+    .analysis-content blockquote {
+        border-left: 4px solid #42b983;
+        padding-left: 1rem;
+        color: #566573;
+        font-style: italic;
+        margin: 1rem 0;
+    }
+    
+    .analysis-content code {
+        background-color: rgba(66, 185, 131, 0.1);
+        border-radius: 3px;
+        padding: 0.2rem 0.4rem;
+        font-family: Consolas, Monaco, 'Andale Mono', monospace;
+    }
+    
+    .analysis-content table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    
+    .analysis-content table, 
+    .analysis-content th, 
+    .analysis-content td {
+        border: 1px solid #ddd;
+    }
+    
+    .analysis-content th, 
+    .analysis-content td {
+        padding: 0.5rem;
+        text-align: left;
+    }
+    
+    .analysis-content th {
+        background-color: #f2f2f2;
+    }
+    
+    .analysis-content tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    
+    .analysis-content strong {
+        font-weight: 600;
+        color: #2c3e50;
+    }
+    
+    .analysis-content em {
+        font-style: italic;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<br><br>
+<h1>{{ _("Google Analytics 4 Analysis") }}</h1>
+<br>
+<div class="container">
+    <h2>{{ _("Analyze your website traffic") }}</h2>
+    <br>
+    {% if error %}
+      <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+
+    <form id="ga-form" method="POST">
+        <div class="form-group">
+            <label for="property_id">{{ _("Property ID") }}</label>
+            {% if properties and properties|length > 0 %}
+            <select class="form-control" id="property_id" name="property_id" required>
+                <option value="">{{ _("Select a property") }}</option>
+                {% for property in properties %}
+                <option value="{{ property.property_id }}">{{ property.name }} ({{ property.property_id }})</option>
+                {% endfor %}
+            </select>
+            {% else %}
+            <input type="text" class="form-control" id="property_id" name="property_id" required>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="start_date">{{ _("Start Date (YYYY-MM-DD or 'today')") }}</label>
+            <input type="date" class="form-control" id="start_date" name="start_date" required>
+        </div>
+        <div class="form-group">
+            <label for="end_date">{{ _("End Date (YYYY-MM-DD or 'today')") }}</label>
+            <input type="date" class="form-control" id="end_date" name="end_date" required>
+        </div>
+        <button type="submit" class="btn btn-primary">{{ _("Generate Analysis") }}</button>
+    </form>
+    <!-- Loading message -->
+    <div id="loading-message" style="display: none;">
+        <h2>{{ _("Please wait, we are analyzing the metric...") }}</h2>
+    </div>
+
+    <!-- Container for results -->
+    <div id="ga-analysis-result"></div>
+</div>
+
+<!-- Include Chart.js and Marked.js from a CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+    document.getElementById('ga-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        document.getElementById('ga-form').style.display = 'none';
+        document.getElementById('loading-message').style.display = 'block';
+
+        const property_id = document.getElementById('property_id').value;
+        const start_date = document.getElementById('start_date').value;
+        const end_date = document.getElementById('end_date').value;
+
+        fetch('/google-analytics', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ property_id, start_date, end_date })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert("{{ _('Error:') }} " + data.error);
+                document.getElementById('ga-form').style.display = 'block';
+                document.getElementById('loading-message').style.display = 'none';
+                return;
+            }
+
+            const analysisSummaryHTML = marked.parse(data.analysis_summary);
+
+            const resultHTML = `
+                <hr>
+                <h2>{{ _("Charts") }}</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>{{ _("Active Users by Medium (Pie Chart)") }}</h3>
+                        <canvas id="pieChartCanvas"></canvas>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>{{ _("Daily Active Users by Medium (Line Chart)") }}</h3>
+                        <div style="height: 400px; width: 100%;">
+                            <canvas id="lineChartCanvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <h2>{{ _("Analysis Summary") }}</h2>
+                <div id="ga-summary-content" class="analysis-content p-4 rounded shadow-sm">${analysisSummaryHTML}</div>
+                <hr>
+                <h2>{{ _("Data Tables") }}</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>{{ _("Top 10 Visited Pages") }}</h4>
+                        <div>${data.top_pages_html}</div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>{{ _("Top Regions") }}</h4>
+                        <div>${data.top_regions_html}</div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('ga-analysis-result').innerHTML = resultHTML;
+
+            const pieCtx = document.getElementById('pieChartCanvas').getContext('2d');
+            new Chart(pieCtx, {
+                type: 'pie',
+                data: {
+                    labels: data.pie_chart_data.labels,
+                    datasets: [{
+                        data: data.pie_chart_data.data,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                            'rgba(75, 192, 192, 0.5)',
+                            'rgba(153, 102, 255, 0.5)',
+                            'rgba(255, 159, 64, 0.5)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: { title: { display: true, text: '{{ _("Active Users by Medium") }}' } }
+                }
+            });
+
+            const lineCtx = document.getElementById('lineChartCanvas').getContext('2d');
+            new Chart(lineCtx, {
+                type: 'line',
+                data: {
+                    labels: data.line_chart_data.labels,
+                    datasets: data.line_chart_data.datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { 
+                        title: { 
+                            display: true, 
+                            text: '{{ _("Daily Active Users by Medium") }}' 
+                        },
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        }
+                    },
+                    scales: { 
+                        y: { 
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Usuarios Activos'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Fecha'
+                            }
+                        }
+                    }
+                }
+            });
+
+            document.getElementById('loading-message').style.display = 'none';
+        })
+        .catch(error => {
+            alert("{{ _('An error occurred:') }} " + error);
+            document.getElementById('ga-form').style.display = 'block';
+            document.getElementById('loading-message').style.display = 'none';
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block title %}{{ _("NexusMetriks") }}{% endblock %}
+{% block content %}
+<br><br>
+<h1>{{ _("Facebook Ads Analysis") }}</h1>
+<br>
+<div class="container">
+    <h2>{{ _("Analyze the performance of your Meta Ads campaigns.") }}</h2>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <form method="POST" action="{{ url_for('meta_ads') }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                <div class="form-group">
+                    <label for="start_date">{{ _("Start Date (YYYY-MM-DD)") }}</label>
+                    <input type="date" class="form-control" id="start_date" name="start_date" required>
+                </div>
+                <div class="form-group">
+                    <label for="end_date">{{ _("End Date (YYYY-MM-DD)") }}</label>
+                    <input type="date" class="form-control" id="end_date" name="end_date" required>
+                </div>
+                <button type="submit" class="btn btn-primary">{{ _("Analyze") }}</button>
+            </form>
+        </div>
+    </div>
+
+    {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+    {% endif %}
+    
+    {% if campaign_summary %}
+        <div class="row">
+            <div class="col-md-6">
+                <h2>{{ _("Campaign Summary") }}</h2>
+                <div id="summary-content">{{ campaign_summary | safe }}</div>
+            </div>
+            <div class="col-md-6">
+                {% if pie_chart_html_clicks %}
+                    <h2>{{ _("Clicks Distribution per Campaign") }}</h2>
+                    <div id="pie-chart-clicks" style="width: 100%; height: auto;">
+                        {{ pie_chart_html_clicks | safe }}
+                    </div>
+                {% endif %}
+                {% if pie_chart_html_spend %}
+                    <h2>{{ _("Spend Distribution per Campaign") }}</h2>
+                    <div id="pie-chart-spend" style="width: 100%; height: auto;">
+                        {{ pie_chart_html_spend | safe }}
+                    </div>
+                {% endif %}
+                {% if pie_chart_html_impressions %}
+                    <h2>{{ _("Impressions Distribution per Campaign") }}</h2>
+                    <div id="pie-chart-impressions" style="width: 100%; height: auto;">
+                        {{ pie_chart_html_impressions | safe }}
+                    </div>
+                {% endif %}
+                {% if pie_chart_html_leads %}
+                    <h2>{{ _("Leads Distribution per Campaign") }}</h2>
+                    <div id="pie-chart-leads" style="width: 100%; height: auto;">
+                        {{ pie_chart_html_leads | safe }}
+                    </div>
+                {% endif %}
+                {% if pie_chart_html_messages %}
+                    <h2>{{ _("Messages Distribution per Campaign") }}</h2>
+                    <div id="pie-chart-messages" style="width: 100%; height: auto;">
+                        {{ pie_chart_html_messages | safe }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+
+    {% if campaign_data %}
+        <h2>{{ _("Campaign Data") }}</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    {% for column in campaign_columns %}
+                        <th>{{ column }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in campaign_data %}
+                    <tr>
+                        {% for column in campaign_columns %}
+                            <td>{{ row[column] }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Convert Markdown content to HTML for Campaign Summary
+    var campaignSummary = document.getElementById('summary-content');
+    if (campaignSummary) {
+        campaignSummary.innerHTML = marked.parse(campaignSummary.textContent);
+    }
+});
+</script>
+{% endblock %}

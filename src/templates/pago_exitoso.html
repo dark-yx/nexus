@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}{{ _("NexusMetriks") }}{% endblock %}
+
+{% block customCSS %}
+<style>
+  /* Main container for the details */
+  .detalle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background: var(--container-bg);
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: auto;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<br><br>
+<h1 class="text-center">{{ _("Congratulations! You now have new credits.") }}</h1>
+<br>
+<div class="container">
+  <div class="detalle-container">
+    <h1>{{ _("Successful Purchase! 🎉") }}</h1>
+    <p>{{ _("Thank you for your purchase,") }} <strong>{{ payerName }}</strong>.</p>
+    <p>{{ _("You have acquired") }} <strong>{{ credits }}</strong> {{ _("credits on NexusMetriks.") }}</p>
+
+    <div class="details">
+      <p><strong>{{ _("Payment ID:") }}</strong> {{ paymentId }}</p>
+      <p><strong>{{ _("Payer ID:") }}</strong> {{ payerId }}</p>
+    </div>
+
+    <a href="{{ url_for('descargar_pdf', paymentId=paymentId, PayerID=payerId, payerName=payerName) }}" class="btn">
+      {{ _("Download PDF Receipt") }}
+    </a>
+
+    <a href="/" class="btn">{{ _("Return to Home") }}</a>
+  </div>
+</div>
+{% endblock %}

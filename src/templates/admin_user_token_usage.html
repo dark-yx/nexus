@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Token Usage</title>
+</head>
+<body>
+    <h1>User Token Usage</h1>
+    <table border="1">
+        <tr>
+            <th>Tool Name</th>
+            <th>Tokens Used</th>
+            <th>Timestamp</th>
+        </tr>
+        {% for tool_name, tokens_used, timestamp in usage %}
+        <tr>
+            <td>{{ tool_name }}</td>
+            <td>{{ tokens_used }}</td>
+            <td>{{ timestamp }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
