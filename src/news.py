@@ -2,8 +2,13 @@ import requests
 import openai
 from openai import OpenAI
 import config
+import os
+from dotenv import load_dotenv
 
-NEWS_API_KEY = 'f047510a3bd443a1bcd22d27b63dfe11'
+# Cargar variables de entorno
+load_dotenv()
+
+NEWS_API_KEY = os.getenv('NEWS_API_KEY', 'f047510a3bd443a1bcd22d27b63dfe11')
 
 # Configurar la API de OpenAI con tu clave de API
 client = OpenAI(api_key=config.DevelopmentConfig.OPENAI_KEY)

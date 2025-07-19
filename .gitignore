@@ -3,6 +3,12 @@ src/config/client_secret.json
 src/static/ga4-apponepum.json
 src/flask_session/
 
+# Variables de entorno
+.env
+.env.local
+.env.production
+.env.staging
+
 # Archivos temporales
 temp_*.py
 *.tmp
