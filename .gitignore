@@ -67,3 +67,7 @@ Thumbs.db
 *.pem
 *.p12
 *.pfx
+
+ai_docs/
+
+GEMINI.md
